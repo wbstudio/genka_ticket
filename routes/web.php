@@ -41,6 +41,7 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     Route::get('bill', [\App\Http\Controllers\customer\BillController::class, 'index'])->name('customer.bill');
 
 });
+
 Route::prefix('shops')->middleware('auth:shops')->group(function(){
 
  Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });
