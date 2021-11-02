@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //集客LP
 Route::get('/', [\App\Http\Controllers\EntranceController::class, 'index']);
 
+
 // 会員ログイン周り
 Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
 Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
