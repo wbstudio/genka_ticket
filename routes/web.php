@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //集客LP
 Route::get('/', [\App\Http\Controllers\EntranceController::class, 'index']);
 
+
 // 会員ログイン周り
 Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
 Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
@@ -29,18 +30,33 @@ Route::get('customer/register', [\App\Http\Controllers\EntranceController::class
 
 // ログイン後のページ
 Route::prefix('customer')->middleware('auth:customers')->group(function(){
-    //
+
+    //Menu--BottomNavigationBar
+    //HOME画面
     Route::get('home', [\App\Http\Controllers\customer\HomeController::class, 'index'])->name('customer.home');
-    //
+    //Map画面 ※GoogleMapAPI
     Route::get('map', [\App\Http\Controllers\customer\MapController::class, 'index'])->name('customer.map');
-    //
+    //Search画面
     Route::get('search', [\App\Http\Controllers\customer\SearchController::class, 'index'])->name('customer.search');
-    //
+    //Ticket画面 ※QRcode
     Route::get('ticket', [\App\Http\Controllers\customer\TicketController::class, 'index'])->name('customer.ticket');
-    //
+    //Bill画面 ※Stripe
     Route::get('bill', [\App\Http\Controllers\customer\BillController::class, 'index'])->name('customer.bill');
 
+    //Menu--hamburger
+    //履歴画面
+    Route::get('history', [\App\Http\Controllers\customer\HistoryController::class, 'index'])->name('customer.history');
+    //プロフィール画面
+    Route::get('profile', [\App\Http\Controllers\customer\ProfileController::class, 'index'])->name('customer.profile');
+    //問い合わせ画面
+    Route::get('contact', [\App\Http\Controllers\customer\ContactController::class, 'index'])->name('customer.contact');
+    //規約画面
+    Route::get('rule', [\App\Http\Controllers\customer\RuleController::class, 'index'])->name('customer.rule');
+    //使い方画面
+    Route::get('explanation', [\App\Http\Controllers\customer\ExplanationController::class, 'index'])->name('customer.explanation');
+
 });
+
 Route::prefix('shops')->middleware('auth:shops')->group(function(){
 
  Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });
