@@ -10,35 +10,35 @@
         <div class="modal_contents">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('customer.history')}}">
                         <div class="link_mass">
                         <div class="link_name">履歴</div>
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('customer.profile')}}">
                         <div class="link_mass">
                         <div class="link_name">プロフィール設定</div>
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('customer.contact')}}">
                         <div class="link_mass">
                         <div class="link_name">お問い合わせ</div>
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('customer.rule')}}">
                         <div class="link_mass">
                         <div class="link_name">規約</div>
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('customer.explanation')}}">
                         <div class="link_mass">
                         <div class="link_name">使い方</div>
                         </div>
