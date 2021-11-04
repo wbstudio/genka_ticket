@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Http\Controllers\CommonController;
+use \App\Models\Customer\Customer;
 
 class CustomerController extends Controller
 {
@@ -21,7 +22,10 @@ class CustomerController extends Controller
         $guard = "customers";
 
         if(\Auth::guard($guard)->attempt($credentials)) {
-
+                                                                     
+            $mdCustomer= new Customer();
+            $customerData = $mdCustomer->getCustomerInfoWhenLogin($request->input('email'));
+            $request->session()->put('id', $customerData["id"]);
             return redirect('customer/home');
 
         }
