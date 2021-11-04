@@ -6,6 +6,7 @@ body{
 
     //header
     header{
+        position: fixed;
         width: 100%;
         height: 30px;
         background: $mainColor;
@@ -95,10 +96,14 @@ body{
     }
     //modal--end
 
+    #content{
+        padding:30px 10px 40px;
+    }
+
     //footer
     footer{
         
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
     
