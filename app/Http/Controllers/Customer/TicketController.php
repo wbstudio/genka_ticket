@@ -13,7 +13,8 @@ class TicketController extends Controller
         //
     public function index() {
         //SP/PC切り替え--customerページでのみ利用（その他はPCのみ作成でOK）
-        CommonController::selectBrowser();
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
         $page_title = "原チケ-Ticket";
         $page_type = "TICKET";
 
@@ -22,7 +23,7 @@ class TicketController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. USER_AGENT .'.ticket', $dispData);
+        return view('customer.'. $displayType .'.ticket', $dispData);
 
     }
 

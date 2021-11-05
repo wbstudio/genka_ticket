@@ -10,8 +10,8 @@ class RuleController extends Controller
 {
     //
     public function index() {
-        //SP/PC切り替え--customerページでのみ利用（その他はPCのみ作成でOK）
-        CommonController::selectBrowser();
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
         $page_title = "原チケ-RULE";
         $page_type = "RULE";
 
@@ -20,7 +20,7 @@ class RuleController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. USER_AGENT .'.rule', $dispData);
+        return view('customer.'. $displayType .'.rule', $dispData);
 
     }
 

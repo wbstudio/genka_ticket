@@ -10,8 +10,8 @@ class ProfileController extends Controller
 {
     //
     public function index() {
-        //SP/PC切り替え--customerページでのみ利用（その他はPCのみ作成でOK）
-        CommonController::selectBrowser();
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
         $page_title = "原チケ-PROFILE";
         $page_type = "PROFILE";
 
@@ -20,7 +20,7 @@ class ProfileController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. USER_AGENT .'.profile', $dispData);
+        return view('customer.'. $displayType .'.profile', $dispData);
 
     }
 

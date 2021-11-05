@@ -13,8 +13,8 @@ class SearchController extends Controller
 
     //
     public function index() {
-        //SP/PC切り替え--customerページでのみ利用（その他はPCのみ作成でOK）
-        CommonController::selectBrowser();
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
         $page_title = "原チケ-Search";
         $page_type = "SEARCH";
 
@@ -23,7 +23,7 @@ class SearchController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. USER_AGENT .'.search', $dispData);
+        return view('customer.'. $displayType .'.search', $dispData);
 
     }
 }
