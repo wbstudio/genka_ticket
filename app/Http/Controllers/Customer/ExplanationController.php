@@ -11,7 +11,7 @@ class ExplanationController extends Controller
     //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-EXPLANATION";
         $page_type = "EXPLANATION";
 
@@ -20,7 +20,7 @@ class ExplanationController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.explanation', $dispData);
+        return view('customer.'. USER_AGENT .'.explanation', $dispData);
 
     }
 

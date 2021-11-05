@@ -13,7 +13,7 @@ class BillController extends Controller
         //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-Bill";
         $page_type = "BILL";
 
@@ -22,7 +22,7 @@ class BillController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.bill', $dispData);
+        return view('customer.'. USER_AGENT .'.bill', $dispData);
 
     }
 

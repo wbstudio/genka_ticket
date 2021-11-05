@@ -13,7 +13,7 @@ class MapController extends Controller
         //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-Map";
         $page_type = "MAP";
 
@@ -22,7 +22,7 @@ class MapController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.map', $dispData);
+        return view('customer.'. USER_AGENT .'.map', $dispData);
 
     }
 

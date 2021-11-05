@@ -11,7 +11,7 @@ class ContactController extends Controller
     //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-CONTACT";
         $page_type = "CONTACT";
 
@@ -20,7 +20,7 @@ class ContactController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.contact', $dispData);
+        return view('customer.'. USER_AGENT .'.contact', $dispData);
 
     }
 

@@ -11,7 +11,7 @@ class ProfileController extends Controller
     //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-PROFILE";
         $page_type = "PROFILE";
 
@@ -20,7 +20,7 @@ class ProfileController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.profile', $dispData);
+        return view('customer.'. USER_AGENT .'.profile', $dispData);
 
     }
 

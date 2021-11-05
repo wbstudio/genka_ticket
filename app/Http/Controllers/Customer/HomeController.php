@@ -12,7 +12,7 @@ class HomeController extends Controller
     //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-HOME";
         $page_type = "HOME";
 
@@ -26,7 +26,7 @@ class HomeController extends Controller
             'customerData' => $customerData,
         ];
 
-        return view('customer.'. $displayType .'.home', $dispData);
+        return view('customer.'. USER_AGENT .'.home', $dispData);
 
     }
 

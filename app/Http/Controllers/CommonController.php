@@ -25,9 +25,7 @@ class CommonController extends Controller
         //一旦開発はSPのみなので
         $user_agent = "sp";
         
-        $displayType = $user_agent;
-        
-        return $displayType;
+        define("USER_AGENT",$user_agent);
 
     }
 }

@@ -14,7 +14,7 @@ class SearchController extends Controller
     //
     public function index() {
         $commonController = new CommonController;
-        $displayType = $commonController->selectBrowser();
+        $commonController->selectBrowser();
         $page_title = "原チケ-Search";
         $page_type = "SEARCH";
 
@@ -23,7 +23,7 @@ class SearchController extends Controller
             'pageType' => $page_type,
         ];
 
-        return view('customer.'. $displayType .'.search', $dispData);
+        return view('customer.'. USER_AGENT .'.search', $dispData);
 
     }
 }
