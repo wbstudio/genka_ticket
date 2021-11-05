@@ -11,8 +11,9 @@ class CustomerController extends Controller
 {
     //
     public function showLoginForm() {
-        CommonController::selectBrowser();
-        return view('customer.'. USER_AGENT.'.login');
+        $commonController = new CommonController;
+        $commonController->selectBrowser();
+        return view('customer.'. USER_AGENT .'.login');
 
     }
 

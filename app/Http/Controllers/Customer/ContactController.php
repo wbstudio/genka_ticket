@@ -10,8 +10,8 @@ class ContactController extends Controller
 {
     //
     public function index() {
-        //SP/PC切り替え--customerページでのみ利用（その他はPCのみ作成でOK）
-        CommonController::selectBrowser();
+        $commonController = new CommonController;
+        $commonController->selectBrowser();
         $page_title = "原チケ-CONTACT";
         $page_type = "CONTACT";
 

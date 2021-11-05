@@ -10,8 +10,9 @@ class EntranceController extends Controller
     //
     public function index () 
     {
-        CommonController::selectBrowser();
-        return view('Entrance.'. USER_AGENT .'.index');
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
+        return view('Entrance.'. $displayType .'.index');
     }
 
     public function showRegistForm () 
