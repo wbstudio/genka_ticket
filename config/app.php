@@ -177,6 +177,11 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        /**
+         * Adminer
+         */
+        Onecentlin\Adminer\ServiceProvider::class,
+
     ],
 
     /*
