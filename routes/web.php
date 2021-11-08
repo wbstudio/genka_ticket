@@ -55,6 +55,9 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     //使い方画面
     Route::get('explanation', [\App\Http\Controllers\customer\ExplanationController::class, 'index'])->name('customer.explanation');
 
+    // Stripe処理
+    Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'upgrade', 'destroy']]);
+
 });
 
 Route::prefix('shops')->middleware('auth:shops')->group(function(){

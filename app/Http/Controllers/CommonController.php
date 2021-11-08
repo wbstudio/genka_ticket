@@ -27,5 +27,6 @@ class CommonController extends Controller
         
         define("USER_AGENT",$user_agent);
 
+        return $user_agent;
     }
 }
