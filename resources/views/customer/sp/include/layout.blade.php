@@ -7,7 +7,7 @@
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/customer/sp/common.css') }}">
         <!--js-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="{{ asset('js/customer/sp/common.js') }}"></script>
         @yield('head')
     </head>
