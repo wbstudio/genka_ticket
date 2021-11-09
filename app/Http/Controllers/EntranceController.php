@@ -12,7 +12,7 @@ class EntranceController extends Controller
     {
         $commonController = new CommonController;
         $displayType = $commonController->selectBrowser();
-        return view('Entrance.'. $displayType .'.index');
+        return view('Entrance.'. USER_AGENT .'.index');
     }
 
     public function showRegistForm () 
