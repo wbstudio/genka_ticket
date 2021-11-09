@@ -7,6 +7,10 @@ body header {
   height: 30px;
   background: #ff3714;
 }
+body header .to_home img {
+  display: inline-block !important;
+  height: 25px;
+}
 body header .menu_icon {
   width: 30px;
   float: right;
@@ -16,6 +20,7 @@ body header .menu_icon {
 body header .menu_icon img {
   width: 20px;
   height: 20px;
+  display: inline-block !important;
 }
 body .modal {
   display: none;

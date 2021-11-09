@@ -24,7 +24,7 @@ class CreatePaymentsTable extends Migration {
 			$table->integer('quantity');
 			$table->integer('amount');
 			$table->integer('delete_flag')->default(0);
-			$table->timestamps(10);
+			$table->timestamps();
 		});
 	}
 

@@ -24,7 +24,7 @@ class CreateSubscriptionsTable extends Migration {
 			$table->date('next_payment_on')->comment('次回請求日');
 			$table->integer('times')->default(1)->comment('継続回数');
 			$table->integer('delete_flag')->default(0)->comment('削除フラグ');
-			$table->timestamps(10);
+			$table->timestamps();
 		});
 	}
 

@@ -11,6 +11,13 @@ body{
         height: 30px;
         background: $mainColor;
 
+        .to_home{
+            img{
+                display: inline-block !important;
+                height: 25px;
+            }
+        }
+
         .menu_icon{
             width: 30px;
             float: right;
@@ -19,6 +26,7 @@ body{
             img{
                 width: 20px;
                 height: 20px;
+                display: inline-block !important;
             }
         }
     }
