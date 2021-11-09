@@ -56,6 +56,8 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     Route::get('explanation', [\App\Http\Controllers\customer\ExplanationController::class, 'index'])->name('customer.explanation');
 
     // Stripe処理
+    Route::get('/subscription/success/{id}', [\App\Http\Controllers\customer\SubscriptionController::class, 'success'])->name('subscription.success');
+    Route::get('/subscription/cancel', [\App\Http\Controllers\customer\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
     Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'upgrade', 'destroy']]);
 
 });

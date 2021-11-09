@@ -9,6 +9,8 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id','created_at'];
+
     /**
      * 有効な継続課金を取得
      * 
@@ -20,7 +22,7 @@ class Subscription extends Model
     static public function getSubscriptions($customerId, $isOnlyValidSubscription = true)
     {
         $query = self::from('subscriptions');
-        
+
         $query->where([
             'customer_id' => $customerId,
             'delete_flag' => 0
@@ -32,12 +34,12 @@ class Subscription extends Model
             $today = $dateObj->format('Y-m-d');
 
             $query->where(function($query) use($today){
-                $query->where('end_on', 'IS', null)
-                      ->orWhere('end_on', '<=', $today);
+                $query->where('end_on', null)
+                    ->orWhere('end_on', '<=', $today);
             });
         }
 
         return $query->get();
     }
-    
+
 }
