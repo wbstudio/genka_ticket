@@ -33,4 +33,17 @@ class ProductConsts
         'unit_price' => 300,
         'quantity' => 10,
     ];
+
+    public const TICKET_PAYMENT_KIND = [
+        'SUBSCRIPTION' => 0, // 継続課金
+        'SINGLE'       => 1, // 追加購入
+    ];
+
+    public const TICKET_STATUS = [
+        'USED'         => 0, // 利用
+        'SUBSCRIPTION' => 1, // 継続課金
+        'EXPIRED'      => 2, // 期限切れ
+        'SINGLE'       => 3, // 追加購入
+    ];
+
 }
