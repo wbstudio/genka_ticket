@@ -23,7 +23,7 @@ class CreateTicketsTable extends Migration {
 			$table->integer('count');
 			$table->integer('status');
 			$table->integer('delete_flag')->default(0);
-			$table->timestamps(10);
+			$table->timestamps();
 		});
 	}
 
