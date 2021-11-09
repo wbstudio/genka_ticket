@@ -12,7 +12,7 @@ use \App\Models\Customer;
 use \App\Models\Subscription;
 use \App\Models\Ticket;
 use \App\Models\Payment;
-use \App\Consts\ProductConsts;
+use \App\Consts\TicketConsts;
 use Carbon\Carbon;
 
 class SubscriptionController extends Controller
@@ -205,7 +205,7 @@ class SubscriptionController extends Controller
                     'email'             => $customer->email,
                     'subscription_id'   => $subscription->id,
                     'stripe_charge_key' => $stripeChargeId,
-                    'kind'              => ProductConsts::TICKET_PAYMENT_KIND['SUBSCRIPTION'],
+                    'kind'              => TicketConsts::TICKET_PAYMENT_KIND['SUBSCRIPTION'],
                     'quantity'          => $ticketQuantity,
                     'amount'            => $amount,
                 ]);
@@ -215,7 +215,7 @@ class SubscriptionController extends Controller
                     'customer_id' => $customer->id,
                     'payment_id'  => $payment->id,
                     'count'       => $ticketQuantity,
-                    'status'      => ProductConsts::TICKET_STATUS['SUBSCRIPTION'],
+                    'status'      => TicketConsts::TICKET_STATUS['SUBSCRIPTION'],
                 ]);
 
                 // ユーザーの保有チケット枚数の更新
