@@ -9,7 +9,7 @@
     Bill画面
 </div>
 @if(count($subscriptions) > 0)
-<p>あり</p>
+<p>{{ App\Consts\ProductConsts::SUBSCRIPTION_PRODUCT['name'] }}登録済</p>
 @else
 <div class="p-1">
     <form action="{{ route('subscription.create') }}" method="get">
