@@ -62,6 +62,10 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
 
 });
 
+
+//Ajax
+Route::get('/ajax/shop/{shop_id}', [\App\Http\Controllers\Ajax\ShopController::class, 'selectShopPushMaekerId']);
+
 Route::prefix('shops')->middleware('auth:shops')->group(function(){
 
  Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });

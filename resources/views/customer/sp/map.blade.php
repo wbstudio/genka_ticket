@@ -10,7 +10,7 @@
 
 
 <div id="map"></div>
-<div></div>
+<div id="subject"></div>
 
 
 <script>
@@ -25,18 +25,28 @@
             // 緯度・経度を変数に格納
             var mapLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            var markerData = [
+            var markerData = new Array();
+            //toDo--JSON or Ajax を決めてプログラムを書く
+            //Jsonならbatch処理
+            //Ajaxなら店舗を撮る範囲を考える
+            markerData.push (
               {
+                  id:2,
                   lat: 35.700430,
                   lng: 139.771720
-              }, {
+              });
+              markerData.push (
+              {
+                id:4,
                   lat: 35.700366,
                   lng: 139.771713
-              },{
+              });
+              markerData.push (
+              {
+                id:5,
                   lat: 35.832201743014195, 
                   lng: 139.5578176587671
-              }
-          ];
+              });
             // マップオプションを変数に格納
             var mapOptions = {
               zoom : 15,          // 拡大倍率
@@ -78,33 +88,37 @@
               position : mapLatLng,   // 緯度・経度
               scaledSize : new google.maps.Size(19, 25)
             });
-            // // マーカー2の設置
-            shopMarker = new google.maps.Marker({
-                position: markerData[0],
+
+            for (i = 0; i < markerData.length; i++) {
+              var markers = new google.maps.Marker({
+                position: new google.maps.LatLng(markerData[i].lat, markerData[i].lng),
                 map: map,
                 icon: {
                   url: '../images/customer/icons/shop_marker.png',
                     scaledSize : new google.maps.Size(19, 25)
                 }
-            });
-            // // マーカー3の設置
-            shopMarker = new google.maps.Marker({
-                position: markerData[1],
-                map: map,
-                icon: {
-                  url: '../images/customer/icons/shop_marker.png',
-                    scaledSize : new google.maps.Size(19, 25)
-                }
-            });
-            // マーカー3の設置
-            shopMarker = new google.maps.Marker({
-                position: markerData[2],
-                map: map,
-                icon: {
-                    url: '../images/customer/icons/shop_marker.png',
-                    scaledSize : new google.maps.Size(19, 25)
-                }
-            });
+              });
+              markerEvent(i); 
+            }
+            // マーカーにクリックイベントを追加
+            function markerEvent(i) {
+              google.maps.event.addListener(markers, 'click', function(){
+                $.ajax({
+                  type: "get", //HTTP通信の種類
+                  url: "/ajax/shop/" + markerData[i].id,
+                  dataType: "json",
+                })
+                .done((res) => {
+                  console.log(res);
+                  var html = '<a href=""><div>店名'+ res.name +'</div></a>';
+                  $('#subject').html(html);
+                })
+                //通信が失敗したとき
+                .fail((error) => {
+                  console.log(error.statusText);
+                });
+              });
+            }
           },
           // 取得失敗した場合
           function(error) {
