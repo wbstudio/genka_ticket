@@ -50,6 +50,8 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     Route::get('profile', [\App\Http\Controllers\customer\ProfileController::class, 'index'])->name('customer.profile');
     //問い合わせ画面
     Route::get('contact', [\App\Http\Controllers\customer\ContactController::class, 'index'])->name('customer.contact');
+    Route::post('contact', [\App\Http\Controllers\customer\ContactController::class, 'confirm'])->name('customer.contact.confirm');
+    Route::post('send', [\App\Http\Controllers\customer\ContactController::class, 'send'])->name('customer.contact.send');
     //規約画面
     Route::get('rule', [\App\Http\Controllers\customer\RuleController::class, 'index'])->name('customer.rule');
     //使い方画面

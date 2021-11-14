@@ -23,12 +23,14 @@ class Authenticate extends Middleware
             $uri = $request->path();
 
             // URIが以下３つから始まる場合
-            if(Str::startsWith($uri, ['customers/', 'shops/', 'admins/'])) {
-
-                return 'multi_login';
-
+            if(Str::startsWith($uri, ['customer/','shop/','admin/'])) {
+                
+                $pathStart = explode("/" , $uri)[0];
+                return route($pathStart.'.login');
+                
             }
 
             return route('login');
-        }    }
+        }    
+    }
 }
