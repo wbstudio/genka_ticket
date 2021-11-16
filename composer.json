@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
+        "onecentlin/laravel-adminer": "^5.3",
         "stripe/stripe-php": "^7.100"
     },
     "require-dev": {
@@ -22,7 +23,6 @@
         "laravel/sail": "^1.12",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "onecentlin/laravel-adminer": "^5.3",
         "oscarafdev/migrations-generator": "^2.0",
         "phpunit/phpunit": "^9.5.10"
     },
