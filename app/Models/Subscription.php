@@ -11,6 +11,11 @@ class Subscription extends Model
 
     protected $guarded = ['id','created_at'];
 
+    protected $dates = [
+        'start_on',
+        'end_on',
+        'next_payment_on'
+    ];
     /**
      * 有効な継続課金を取得
      * 
@@ -39,7 +44,7 @@ class Subscription extends Model
             });
         }
 
-        return $query->get();
+        return $query->first();
     }
 
 }

@@ -19,12 +19,12 @@ class BillController extends Controller
 
         // ログインユーザーの継続課金データ取得
         $customerId = Auth::id();
-        $subscriptions = Subscription::getSubscriptions($customerId);
+        $subscription = Subscription::getSubscriptions($customerId);
 
         $dispData = [
             'pageTitle' => $page_title,
             'pageType' => $page_type,
-            'subscriptions' => $subscriptions,
+            'subscription' => $subscription,
         ];
         
         return view('customer.' . USER_AGENT . '.bill', $dispData);
