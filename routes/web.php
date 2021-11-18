@@ -58,7 +58,7 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     // Stripe処理
     Route::get('/subscription/success/{id}', [\App\Http\Controllers\customer\SubscriptionController::class, 'success'])->name('subscription.success');
     Route::get('/subscription/cancel', [\App\Http\Controllers\customer\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
-    Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'upgrade', 'destroy']]);
+    Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
 });
 
@@ -73,6 +73,9 @@ Route::prefix('admins')->middleware('auth:admins')->group(function(){
  Route::get('dashboard', function(){ return 'アスリートでログイン完了'; });
 
 });
+
+// Stripe Webhook
+Route::post('stripe/webhook', [\App\Http\Controllers\WebhookController::class, 'handleWebhook']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

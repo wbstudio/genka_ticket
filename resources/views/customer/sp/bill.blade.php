@@ -11,8 +11,7 @@
 @if(!is_null($subscription))
 <div class="text-center">
     <h2 class="mb-5">{{ App\Consts\TicketConsts::SUBSCRIPTION_TICKET_INFO['name'] }} 詳細</h2>
-    <form action="{{ route('subscription.destroy', $subscription->id) }}" method="post">
-    @csrf
+    <form action="{{ route('subscription.edit', $subscription->id) }}" method="get">
         <div class="info text-center w-100 mb-10">
             <table class="table mx-auto mb-5">
                 <tr>
@@ -47,7 +46,7 @@
             </table>
         </div>
         <div class="submit text-center">
-            <button type="submit" class="p-2 pl-5 pr-5 bg-transparent border-2 border-red-500 text-red-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-red-500 hover:text-gray-100 focus:border-4 focus:border-red-300">解約する</button>
+            <button type="submit" class="p-2 pl-5 pr-5 bg-transparent border-2 border-red-500 text-red-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-red-500 hover:text-gray-100 focus:border-4 focus:border-red-300">編集</button>
         </div>
     </form>
 </div>
