@@ -23,7 +23,8 @@ Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class
 Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
 
 //会員登録周り
-Route::get('customer/register', [\App\Http\Controllers\EntranceController::class, 'showRegistForm'])->name('customer.register');
+Route::get('customer/register', [\App\Http\Controllers\EntranceController::class, 'create'])->name('customer.register');
+Route::get('customer/linelink', [\App\Http\Controllers\EntranceController::class, 'lineLink'])->name('customer.linelink');
 
 // ログアウト
 // Route::get('multi_login/logout', [\App\Http\Controllers\customer\MultiAuthController::class, 'logout']);
