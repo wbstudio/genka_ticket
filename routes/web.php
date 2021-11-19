@@ -59,6 +59,9 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     Route::get('/subscription/success/{id}', [\App\Http\Controllers\customer\SubscriptionController::class, 'success'])->name('subscription.success');
     Route::get('/subscription/cancel', [\App\Http\Controllers\customer\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
     Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    Route::get('/ticket/success/{id}', [\App\Http\Controllers\customer\TicketController::class, 'success'])->name('ticket.success');
+    Route::get('/ticket/cancel', [\App\Http\Controllers\customer\TicketController::class, 'cancel'])->name('ticket.cancel');
+    Route::resource('ticket', \App\Http\Controllers\customer\TicketController::class, ['only' => ['create', 'success', 'cancel', 'index']]);
 
 });
 
