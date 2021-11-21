@@ -1,0 +1,31 @@
+.title {
+  margin-top: 10px;
+}
+
+.qrread_area {
+  margin-top: 5px;
+}
+.qrread_area #pane-webcam .qr_video {
+  max-height: 300px;
+  display: none;
+}
+.qrread_area #pane-webcam .qr_canvas {
+  max-height: 300px;
+  display: none;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-overlay.is-show {
+  display: flex;
+}/*# sourceMappingURL=ticket.css.map */

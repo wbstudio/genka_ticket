@@ -33,7 +33,7 @@
             </a>
         </li>
         <li @if(isset($pageType) && $pageType == "SEARCH")class="active" @endif>
-            <a href="{{ route('customer.search')}}">
+            <a href="{{ route('customer.search')}}" class="search_link">
                 <div class="container">
                     <div class="icon">
                         <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" xml:space="preserve">
