@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 //集客LP
 Route::get('/', [\App\Http\Controllers\EntranceController::class, 'index']);
+Route::get('/make/json/station', [\App\Http\Controllers\JsonController::class, 'station']);
+// Route::get('/make/json/test', [\App\Http\Controllers\JsonController::class, 'test']);
 
 
 // 会員ログイン周り
@@ -38,8 +40,11 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
     Route::get('map', [\App\Http\Controllers\customer\MapController::class, 'index'])->name('customer.map');
     //Search画面
     Route::get('search', [\App\Http\Controllers\customer\SearchController::class, 'index'])->name('customer.search');
+    Route::post('search', [\App\Http\Controllers\customer\SearchController::class, 'index'])->name('customer.search.post');
     //Ticket画面 ※QRcode
     Route::get('ticket', [\App\Http\Controllers\customer\TicketController::class, 'index'])->name('customer.ticket');
+    Route::get('ticket/thanks', [\App\Http\Controllers\customer\TicketController::class, 'thanks']);
+    Route::get('ticket/shortage', [\App\Http\Controllers\customer\TicketController::class, 'shortage']);
     //Bill画面 ※Stripe
     Route::get('bill', [\App\Http\Controllers\customer\BillController::class, 'index'])->name('customer.bill');
 
@@ -67,6 +72,7 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
 
 //Ajax
 Route::get('/ajax/shop/{shop_id}', [\App\Http\Controllers\Ajax\ShopController::class, 'selectShopPushMaekerId']);
+Route::get('/ajax/ticket_use_insert/shop/{shop_id}/service/{service_id}/ticket/{ticket_count}/customer/{customer_id}', [\App\Http\Controllers\Ajax\TicketController::class, 'insertUseTicketData']);
 
 Route::prefix('shops')->middleware('auth:shops')->group(function(){
 
