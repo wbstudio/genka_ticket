@@ -1,0 +1,104 @@
+$mainColor: rgb(255, 55, 20);
+$subColor:rgb(255, 241, 238);
+
+//アコーディオン内
+.s_01 .accordion_one {
+    max-width: 1024px;
+    margin: 10px auto 0;
+
+    .accordion_header {
+        background-color: $mainColor;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 3%;
+        position: relative;
+        z-index: +1;
+        cursor: pointer;
+        transition-duration: 0.2s;
+
+        &:hover {
+            opacity: .8;
+        }
+
+        .down{
+            background-repeat: no-repeat;
+            width: 13px;
+            height: 18px;
+            float: right;
+            position: relative;
+            top: 0.3em;
+            background-image: url(/images/customer/icons/icon_to_link.svg);
+            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);        
+        }
+
+        .up{
+            background-repeat: no-repeat;
+            width: 18px;
+            height: 18px;
+            float: right;
+            position: relative;
+            top: 0.15em;
+            background-image: url(/images/customer/icons/icon_to_link.svg);
+            transform: rotate(270deg);
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+        }
+        
+    }
+
+    .accordion_inner {
+        display: none;
+        padding: 7px 14px;
+        background: $subColor;
+        border-left: 2px solid $mainColor;
+        border-right: 2px solid $mainColor;
+        border-bottom: 2px solid $mainColor;
+        box-sizing: border-box;
+        font-size: 12px;
+
+        .station_toggle{
+
+            select{
+                margin-bottom: 7px;
+                background: #FFF;
+                display: block;
+            }
+
+            .caution_area{
+                font-size: 10px;
+                color: $mainColor;
+            }
+            
+                
+        }
+        .category_toggle{
+
+            .category_mass{
+                display: inline-block;
+                margin-right: 10px;
+            }
+        }
+    }        
+}
+
+//検索ボタン
+.btn_area{
+    text-align: center;
+
+    button{
+        padding: 3px 10px;
+        margin-top: 10px;
+        border:1px solid $mainColor;
+        color:$mainColor;
+        border-radius: 5px;
+        background: #FFF;
+        font-size: 12px;
+    }
+}
