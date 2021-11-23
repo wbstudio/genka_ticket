@@ -90,7 +90,7 @@ class EntranceController extends Controller
         }
 
         // 入力画面にリダイレクト
-        return redirect('customer.regist');
+        return redirect('customer/regist');
     }
 
     /**
@@ -114,7 +114,6 @@ class EntranceController extends Controller
 
         session()->forgot('line.user');
 
-        return redirect()->route('customer.home')
-            ->with('success', 'Project created successfully.');
+        return redirect('customer/home');
     }
 }
