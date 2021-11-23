@@ -16,15 +16,16 @@ class Subscription extends Model
         'end_on',
         'next_payment_on'
     ];
+
     /**
      * 有効な継続課金を取得
      * 
      * @param int $customerId ユーザーID
      * @param bool $isOnlyValidSubscription 有効な継続課金のみ
      * 
-     * @return array $subscriptions
+     * @return object $subscription
      */
-    static public function getSubscriptions($customerId, $isOnlyValidSubscription = true)
+    static public function getSubscription($customerId, $isOnlyValidSubscription = true)
     {
         $query = self::from('subscriptions');
 
