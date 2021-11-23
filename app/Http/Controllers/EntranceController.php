@@ -11,27 +11,27 @@ use Illuminate\Support\Facades\Log;
 class EntranceController extends Controller
 {
     //
-    public function index () 
+    public function index()
     {
         $commonController = new CommonController;
         $displayType = $commonController->selectBrowser();
-        return view('Entrance.'. USER_AGENT .'.index');
+        return view('Entrance.' . USER_AGENT . '.index');
     }
 
-    public function regist() 
+    public function regist()
     {
         $commonController = new CommonController;
         $displayType = $commonController->selectBrowser();
 
         $lineUserDetail = session('line.user');
-        if (!is_null($lineUserDetail['line_user_id'])) {
+        if (!is_null($lineUserDetail) && !is_null($lineUserDetail['line_user_id'])) {
             $dispData = [
                 'userData' => $lineUserDetail
-            ];    
-            return view('Entrance.'. USER_AGENT .'.regist', $dispData);
+            ];
+            return view('Entrance.' . USER_AGENT . '.regist', $dispData);
         }
         $lineClass = new LineClass;
-        return $lineClass->authorize(env('APP_URL').'/entrance/linelink');
+        return $lineClass->authorize(env('APP_URL') . '/entrance/linelink');
     }
 
     /**
@@ -117,5 +117,4 @@ class EntranceController extends Controller
         return redirect()->route('customer.home')
             ->with('success', 'Project created successfully.');
     }
-
 }
