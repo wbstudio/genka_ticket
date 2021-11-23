@@ -21,6 +21,7 @@ Route::get('/', [\App\Http\Controllers\EntranceController::class, 'index']);
 // 会員ログイン周り
 Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
 Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
+Route::get('customer/logout', [\App\Http\Controllers\customer\CustomerController::class, 'logout'])->name('customer.logout');
 
 //会員登録周り
 Route::get('customer/register', [\App\Http\Controllers\EntranceController::class, 'create'])->name('customer.register');

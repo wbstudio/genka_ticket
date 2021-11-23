@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Http\Controllers\CommonController;
 use \App\Models\Customer\Customer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
@@ -34,6 +36,17 @@ class CustomerController extends Controller
         return back()->withErrors([
             'auth' => ['認証に失敗しました']
         ]);
+    }
+
+    /**
+     * ログアウト
+     *  - 全セッション削除
+     */
+    public function logout(Request $request) {
+
+        Auth::logout();
+        Session::flush();
+        return redirect('customer');
     }
 
 }
