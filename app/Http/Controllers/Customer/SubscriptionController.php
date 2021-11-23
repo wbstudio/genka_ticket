@@ -237,6 +237,7 @@ class SubscriptionController extends Controller
                 $customer->ticket = $customer->ticket + $ticketQuantity;
                 // StripeCustomerの設定がない場合、ユーザーに紐付ける
                 if (is_null($customer->stripe_customer_key)) {
+                    $customer->email = $checkout_session->customer_email;
                     $customer->stripe_customer_key = $checkout_session->customer;
                 }
                 $customer->saveOrFail();

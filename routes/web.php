@@ -22,10 +22,13 @@ Route::get('/', [\App\Http\Controllers\EntranceController::class, 'index']);
 Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
 Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
 Route::get('customer/logout', [\App\Http\Controllers\customer\CustomerController::class, 'logout'])->name('customer.logout');
+Route::get('customer/linelink', [\App\Http\Controllers\customer\CustomerController::class, 'lineLink'])->name('customer.linelink');
+
 
 //会員登録周り
-Route::get('customer/register', [\App\Http\Controllers\EntranceController::class, 'create'])->name('customer.register');
-Route::get('customer/linelink', [\App\Http\Controllers\EntranceController::class, 'lineLink'])->name('customer.linelink');
+Route::get('customer/regist', [\App\Http\Controllers\EntranceController::class, 'regist'])->name('customer.regist');
+Route::post('customer/regist', [\App\Http\Controllers\EntranceController::class, 'store'])->name('customer.store');
+Route::get('entrance/linelink', [\App\Http\Controllers\EntranceController::class, 'lineLink'])->name('entrance.linelink');
 
 // ログアウト
 // Route::get('multi_login/logout', [\App\Http\Controllers\customer\MultiAuthController::class, 'logout']);

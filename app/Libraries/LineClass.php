@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Libraries;
- 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 /**
  * LINE 共通処理
@@ -193,30 +194,30 @@ class LineClass {
      */
     private function apiRequest($method, $url, $param, $header)
     {
-        $http = new Client();
         try {
             if ($method === 'POST') {
-                $response = $http->post($url, $param, ['headers' => $header]);
+                $response = Http::asForm()->withHeaders($header)->post($url, $param);
             } elseif ($method === 'GET') {
-                $response = $http->get($url, $param, ['headers' => $header]);
+                $response = Http::withHeaders($header)->get($url, $param);
             }
 
             // HTTPステータスコードが400 or 500系の場合エラー
-            if (!$response->isOk()) {
-                Log::debug('ERROR ---------------------------------------------------------', 'line_login_error');
-                Log::debug('REQUEST', 'line_login_error');
-                Log::debug('- URL   :'. json_encode($url), 'line_login_error');
-                Log::debug('- HEADER:'. json_encode($header), 'line_login_error');
-                Log::debug('- PARAM :'. json_encode($param), 'line_login_error');
-                Log::debug('RESPONSE', 'line_login_error');
-                Log::debug('- HEADER:'. json_encode($response->getHeaders()), 'line_login_error');
-                Log::debug('- BODY  :'. json_encode($response->getStringBody()), 'line_login_error');
-                Log::debug('---------------------------------------------------------------', 'line_login_error');
-                throw new Exception("[{$url}] API HTTP status is 400 or 500");
+            if (!$response->successful()) {
+                Log::debug('ERROR ---------------------------------------------------------');
+                Log::debug('REQUEST');
+                Log::debug('- URL   :'. json_encode($url));
+                Log::debug('- HEADER:'. json_encode($header));
+                Log::debug('- PARAM :'. json_encode($param));
+                Log::debug('RESPONSE');
+                Log::debug('- STATUS :'. $response->status());
+                Log::debug(json_encode($response->json()));
+                Log::debug('---------------------------------------------------------------');
+                throw new \Exception("[{$url}] API HTTP status is 400 or 500");
             }
 
-            $responseBody = $response->getJson();
-        } catch (Exception $e) {
+            $responseBody = $response->json();
+        } catch (\Exception $e) {
+            Log::debug($e->getMessage());
             return false;
         }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Http\Controllers\CommonController;
 use \App\Libraries\LineClass;
 use \App\Models\Customer;
+use Illuminate\Support\Facades\Log;
 
 class EntranceController extends Controller
 {
@@ -17,44 +18,46 @@ class EntranceController extends Controller
         return view('Entrance.'. USER_AGENT .'.index');
     }
 
-    public function create() 
+    public function regist() 
     {
+        $commonController = new CommonController;
+        $displayType = $commonController->selectBrowser();
+
         $lineUserDetail = session('line.user');
-        if (!is_null($lineUserDetail)) {
+        if (!is_null($lineUserDetail['line_user_id'])) {
             $dispData = [
                 'userData' => $lineUserDetail
             ];    
-            return view('Entrance.'. USER_AGENT .'.create', $dispData);
+            return view('Entrance.'. USER_AGENT .'.regist', $dispData);
         }
         $lineClass = new LineClass;
-        return $lineClass->authorize(env('APP_URL').'/customer/linelink');
+        return $lineClass->authorize(env('APP_URL').'/entrance/linelink');
     }
-    
+
     /**
      * LINE連携画面のLINE認証コールバック
      */
-    public function lineLink()
+    public function lineLink(Request $request)
     {
-        $getParam = $this->request->getQuery();
         $lineClass = new LineClass;
 
         try {
             // エラーの場合
-            if (isset($getParam['error'])) {
-                Log::debug('ERROR :--------------------------------------------------------', 'line_login_error');
-                Log::debug($getParam['error_description'], 'line_login_error');
+            if (isset($request['error'])) {
+                Log::debug('ERROR :--------------------------------------------------------');
+                Log::debug($request['error_description']);
                 throw new \Exception("ERROR :AUTH_REDIRECT");
             }
 
             // 同一チェックが異なる場合
             $postState = session('line.state');
-            if ($postState !== $getParam['state']) {
-                Log::debug('ERROR :--------------------------------------------------------', 'line_login_error');
+            if ($postState !== $request['state']) {
+                Log::debug('ERROR :--------------------------------------------------------');
                 throw new \Exception("ERROR :DIFFERENT_STATE");
             }
 
             // IDトークン取得
-            $idToken = $lineClass->getIdToken($getParam['code']);
+            $idToken = $lineClass->getIdToken($request['code']);
             if (!$idToken) {
                 throw new \Exception("ERROR :ID_TOKEN");
             }
@@ -69,7 +72,7 @@ class EntranceController extends Controller
             $mbCustomer = new Customer();
             $customer = $mbCustomer
                 ->where([
-                    'line_user_id' => $lineUserDetail['line_user_id'],
+                    'line_user_key' => $lineUserDetail['line_user_id'],
                     'delete_flag' => 0
                 ])
                 ->first();
@@ -81,14 +84,38 @@ class EntranceController extends Controller
             // LINEユーザー情報をセッションに保存
             session(['line.user' => $lineUserDetail]);
         } catch (\Exception $e) {
-            Log::debug($e->getMessage(), 'line_login_error');
+            Log::debug($e->getMessage());
             // $this->Flash->error('エラーが発生しました。何度も続く場合は、お問い合わせください。');
-            return redirect('customer');
+            return redirect('/');
         }
 
         // 入力画面にリダイレクト
-        return redirect('customer.register');
+        return redirect('customer.regist');
     }
 
+    /**
+     * ユーザー登録処理
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:customers',
+        ]);
+
+        $cunstomerData = $request->all();
+        $cunstomerData['line_user_key'] = session('line.user.line_user_id');
+        $cunstomerData['ticket'] = 0;
+
+        Customer::create($cunstomerData);
+
+        session()->forgot('line.user');
+
+        return redirect()->route('customer.home')
+            ->with('success', 'Project created successfully.');
+    }
 
 }
