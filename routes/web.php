@@ -21,51 +21,51 @@ Route::get('/make/json/station', [\App\Http\Controllers\JsonController::class, '
 
 
 // 会員ログイン周り
-Route::get('customer', [\App\Http\Controllers\customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
-Route::post('customer', [\App\Http\Controllers\customer\CustomerController::class, 'login']);
+Route::get('customer', [\App\Http\Controllers\Customer\CustomerController::class, 'showLoginForm'])->name('customer.login');
+Route::post('customer', [\App\Http\Controllers\Customer\CustomerController::class, 'login']);
 
 //会員登録周り
 Route::get('customer/register', [\App\Http\Controllers\EntranceController::class, 'showRegistForm'])->name('customer.register');
 
 // ログアウト
-// Route::get('multi_login/logout', [\App\Http\Controllers\customer\MultiAuthController::class, 'logout']);
+// Route::get('multi_login/logout', [\App\Http\Controllers\Customer\MultiAuthController::class, 'logout']);
 
 // ログイン後のページ
 Route::prefix('customer')->middleware('auth:customers')->group(function(){
 
     //Menu--BottomNavigationBar
     //HOME画面
-    Route::get('home', [\App\Http\Controllers\customer\HomeController::class, 'index'])->name('customer.home');
+    Route::get('home', [\App\Http\Controllers\Customer\HomeController::class, 'index'])->name('customer.home');
     //Map画面 ※GoogleMapAPI
-    Route::get('map', [\App\Http\Controllers\customer\MapController::class, 'index'])->name('customer.map');
+    Route::get('map', [\App\Http\Controllers\Customer\MapController::class, 'index'])->name('customer.map');
     //Search画面
-    Route::get('search', [\App\Http\Controllers\customer\SearchController::class, 'index'])->name('customer.search');
-    Route::post('search', [\App\Http\Controllers\customer\SearchController::class, 'index'])->name('customer.search.post');
+    Route::get('search', [\App\Http\Controllers\Customer\SearchController::class, 'index'])->name('customer.search');
+    Route::post('search', [\App\Http\Controllers\Customer\SearchController::class, 'index'])->name('customer.search.post');
     //Ticket画面 ※QRcode
-    Route::get('ticket', [\App\Http\Controllers\customer\TicketController::class, 'index'])->name('customer.ticket');
-    Route::get('ticket/thanks', [\App\Http\Controllers\customer\TicketController::class, 'thanks']);
-    Route::get('ticket/shortage', [\App\Http\Controllers\customer\TicketController::class, 'shortage']);
+    Route::get('ticket', [\App\Http\Controllers\Customer\TicketController::class, 'index'])->name('customer.ticket');
+    Route::get('ticket/thanks', [\App\Http\Controllers\Customer\TicketController::class, 'thanks']);
+    Route::get('ticket/shortage', [\App\Http\Controllers\Customer\TicketController::class, 'shortage']);
     //Bill画面 ※Stripe
-    Route::get('bill', [\App\Http\Controllers\customer\BillController::class, 'index'])->name('customer.bill');
+    Route::get('bill', [\App\Http\Controllers\Customer\BillController::class, 'index'])->name('customer.bill');
 
     //Menu--hamburger
     //履歴画面
-    Route::get('history', [\App\Http\Controllers\customer\HistoryController::class, 'index'])->name('customer.history');
+    Route::get('history', [\App\Http\Controllers\Customer\HistoryController::class, 'index'])->name('customer.history');
     //プロフィール画面
-    Route::get('profile', [\App\Http\Controllers\customer\ProfileController::class, 'index'])->name('customer.profile');
+    Route::get('profile', [\App\Http\Controllers\Customer\ProfileController::class, 'index'])->name('customer.profile');
     //問い合わせ画面
-    Route::get('contact', [\App\Http\Controllers\customer\ContactController::class, 'index'])->name('customer.contact');
-    Route::post('contact', [\App\Http\Controllers\customer\ContactController::class, 'confirm'])->name('customer.contact.confirm');
-    Route::post('send', [\App\Http\Controllers\customer\ContactController::class, 'send'])->name('customer.contact.send');
+    Route::get('contact', [\App\Http\Controllers\Customer\ContactController::class, 'index'])->name('customer.contact');
+    Route::post('contact', [\App\Http\Controllers\Customer\ContactController::class, 'confirm'])->name('customer.contact.confirm');
+    Route::post('send', [\App\Http\Controllers\Customer\ContactController::class, 'send'])->name('customer.contact.send');
     //規約画面
-    Route::get('rule', [\App\Http\Controllers\customer\RuleController::class, 'index'])->name('customer.rule');
+    Route::get('rule', [\App\Http\Controllers\Customer\RuleController::class, 'index'])->name('customer.rule');
     //使い方画面
-    Route::get('explanation', [\App\Http\Controllers\customer\ExplanationController::class, 'index'])->name('customer.explanation');
+    Route::get('explanation', [\App\Http\Controllers\Customer\ExplanationController::class, 'index'])->name('customer.explanation');
 
     // Stripe処理
-    Route::get('/subscription/success/{id}', [\App\Http\Controllers\customer\SubscriptionController::class, 'success'])->name('subscription.success');
-    Route::get('/subscription/cancel', [\App\Http\Controllers\customer\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
-    Route::resource('subscription', \App\Http\Controllers\customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'upgrade', 'destroy']]);
+    Route::get('/subscription/success/{id}', [\App\Http\Controllers\Customer\SubscriptionController::class, 'success'])->name('subscription.success');
+    Route::get('/subscription/cancel', [\App\Http\Controllers\Customer\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
+    Route::resource('subscription', \App\Http\Controllers\Customer\SubscriptionController::class, ['only' => ['create', 'store', 'show', 'edit', 'upgrade', 'destroy']]);
 
 });
 
