@@ -97,7 +97,21 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        // ログインユーザー取得
+        $subscription = Subscription::find($id);
+        $customer = Customer::find($subscription->customer_id);
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
+
+        // Authenticate your user.
+        $session = \Stripe\BillingPortal\Session::create([
+            'customer' => $customer->stripe_customer_key,
+            'return_url' => env('APP_URL').'/customer/bill',
+        ]);
+
+        // Redirect to the customer portal.
+        header("Location: " . $session->url);
+        exit();
     }
 
     /**
@@ -223,6 +237,7 @@ class SubscriptionController extends Controller
                 $customer->ticket = $customer->ticket + $ticketQuantity;
                 // StripeCustomerの設定がない場合、ユーザーに紐付ける
                 if (is_null($customer->stripe_customer_key)) {
+                    $customer->email = $checkout_session->customer_email;
                     $customer->stripe_customer_key = $checkout_session->customer;
                 }
                 $customer->saveOrFail();

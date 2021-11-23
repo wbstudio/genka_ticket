@@ -47,7 +47,7 @@
                 <li>
                     <a href="#">
                         <div class="link_mass">
-                        <div class="link_name">ログアウト</div>
+                        <div class="link_name"><a href="{{ route('customer.logout') }}">ログアウト</a></div>
                         </div>
                     </a>
                 </li>
