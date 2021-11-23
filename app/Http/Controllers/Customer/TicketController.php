@@ -55,6 +55,12 @@ class TicketController extends Controller
         $checkout_session = \Stripe\Checkout\Session::create([
             'line_items' => [[
                 'price' => env('STRIPE_SINGLE_PRICE_KEY'), // 追加購入
+                'adjustable_quantity' => [
+                    'enabled' => true,
+                    'maximum' => 999,
+                    'minimum' => 1
+                ],
+                'quantity' => 1
             ]],
             'payment_method_types' => [
                 'card',
@@ -103,33 +109,16 @@ class TicketController extends Controller
                 []
             );
 
-            // TODO:単品購入時のチャージIDまで取得する
+            $payment_intent = $stripe->paymentIntents->retrieve(
+                $checkout_session->payment_intent,
+                []
+            );
+            $stripeChargeId = $payment_intent->charges->data[0]->id;
 
-            // // Stripe継続課金データ
-            // $subscription = null;
-            // if (!is_null($checkout_session->subscription)) {
-            //     $subscription = $stripe->subscriptions->retrieve(
-            //         $checkout_session->subscription,
-            //         []
-            //     );
-            // }
-
-            // // Stripe請求データ
-            // $invoice = null;
-            // if (!is_null($subscription->latest_invoice)) {
-            //     $invoice = $stripe->invoices->retrieve(
-            //         $subscription->latest_invoice,
-            //         []
-            //     );
-            // }
-
-            // // 支払トランザクションキー
-            // $stripeChargeId = $invoice->charge ?? null;
-
-            // // 支払トランザクションキーが存在しない場合、Billページにリダイレクト
-            // if (is_null($stripeChargeId)) {
-            //     return redirect(route('customer.bill'))->with('flash_message', '支払いに失敗しました。再度お試しください。');
-            // }
+            // 支払トランザクションキーが存在しない場合、Billページにリダイレクト
+            if (is_null($stripeChargeId)) {
+                return redirect(route('customer.bill'))->with('flash_message', '支払いに失敗しました。再度お試しください。');
+            }
 
             // データ保存処理
             $item = $stripe->checkout->sessions->allLineItems($stripeSessionId, ['limit' => 1]);
