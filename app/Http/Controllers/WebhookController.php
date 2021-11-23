@@ -15,7 +15,7 @@ class WebhookController extends CashierController
     {
         try {
             // サブスクリプションID取得
-            $subscriptionId = $payload['data']['subscription'];
+            $subscriptionId = $payload['data']['object']['id'];
 
             // サブスクリプションエンティティ取得
             $mbSubscription = new Subscription();
