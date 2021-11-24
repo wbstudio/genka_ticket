@@ -112,7 +112,7 @@ class EntranceController extends Controller
 
         Customer::create($cunstomerData);
 
-        session()->forgot('line.user');
+        session()->forget('line.user');
 
         return redirect('customer/home');
     }
