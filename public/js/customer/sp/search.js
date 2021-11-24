@@ -9,6 +9,13 @@ $(function(){
     //現在地取得
     navigator.geolocation.getCurrentPosition(success,fail);
 
+    var station_cd = $(".station_cd").val();
+    var station_prefecture = $(".station_prefecture").val();
+    var station_line = $(".station_line").val();
+    if(station_cd.length > 0){
+        setSelectStation(station_cd,station_prefecture,station_line);
+    }
+
     //select
     $('#prefecture').change(function() {
         var prefectureVal = $(this).val();
@@ -28,6 +35,7 @@ $(function(){
     });
 
     function makeOptions(selectId,selectVal){
+        console.log("aaaaaaaa");
         $.getJSON("../json/" + selectId + "s.json" , function(jsonData) {
             var data = jsonData;
             $select = $('#'+ selectId );
@@ -63,6 +71,16 @@ $(function(){
     
     function fail(pos){
         alert('位置情報の取得に失敗しました。エラーコード：');
+    }
+    
+    function setSelectStation(station_cd,station_prefecture,station_line){
+        makeOptions("line",station_prefecture);
+        makeOptions("station",station_line);
+        setTimeout(function(){
+            $("select#prefecture").val(station_prefecture);
+            $("select#line").val(station_line);
+            $("select#station").val(station_cd);
+        },200);
     }
     
     
