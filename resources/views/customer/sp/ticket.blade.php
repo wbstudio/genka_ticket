@@ -2,20 +2,18 @@
 @section('title', '')
 @section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 <link rel="stylesheet" href="{{ asset('css/customer/sp/ticket.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.1.1/dist/jsQR.min.js" integrity="sha384-i4Tuh5Z0ns/3M0289mSougur8irvedWPBlwOcJ7ob5AK/rvN5tjkwzu7P1k1dThG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@latest/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@latest/dist/jsQR.min.js"></script>
 @endsection
 
 @section('content')
-<div class="title">
-    QR読み取り
-</div>
-<div class="qrread_area">
-    <div id="pane-webcam">
-        <video name="video" autoplay class="qr_video"></video>
-        <canvas name="canvas" class="qr_canvas"></canvas>
-    </div>
-</div>
+<video id="video" width="320" height="480" autoplay></video>
+<textarea id="result" readonly></textarea>
+<canvas id="canvas" width="240" height="240"></canvas>
+<textarea id="data" style="visibility: hidden;"></textarea>
+
 @include('customer.sp.include.ticket_confirm_modal')
 <script src="{{ asset('js/customer/sp/ticket.js') }}"></script>
 <input type="hidden" id="customer_id" value="{{$customerData['customer_id']}}">

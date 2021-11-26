@@ -1,5 +1,58 @@
 $(window).load(function(){
-    openWebcam(event);
+    // openWebcam(event);
+    function qrParse(video){
+      const canvas = new OffscreenCanvas(240, 320);
+      const render = canvas.getContext("2d");
+
+      return new Promise((res)=>{
+          const loop = setInterval(()=>{
+              render.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+              const img = render.getImageData(0, 0, canvas.width, canvas.height);
+              const result = jsQR(img.data, img.width, img.height);
+
+              if(result){
+                console.log(result);
+                var message = result.data;
+                        //gen-chike/shop/5/service/3/ticket/2
+                var res = message.split('/');
+                var customeId = document.getElementById("customer_id").value;
+                //testCode
+                // var customeId = 5;
+                //読み取りのres[0]とかではじかないといけない？
+                console.log(res);
+                console.log(customeId);
+                insertAjax(res[2],res[4],res[6],customeId);
+
+                  clearInterval(loop);
+                  return res(result.data);
+              }
+          }, 100);
+      });
+  }
+
+  function qrGenerate(data){
+      const canvas = new OffscreenCanvas(1, 1);
+
+      return new Promise((res, rej) => QRCode.toCanvas(canvas, data, {}, err => !err ? res(canvas) : rej(err)));
+  }
+
+  document.getElementById("data").addEventListener("change", async({target})=>{
+      document.getElementById("canvas").getContext("bitmaprenderer").transferFromImageBitmap((await qrGenerate(target.value)).transferToImageBitmap());
+  });
+
+  (async()=>{
+      const video = document.getElementById("video");
+      video.srcObject = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: {
+              facingMode: "environment"
+          }
+      });
+
+      document.getElementById("result").value = await qrParse(video);
+  })();
+
 });
 
 function scan(e) {

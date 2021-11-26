@@ -1,31 +1,21 @@
-.title {
-  margin-top: 10px;
+body, input {
+  font-size: 14pt;
 }
 
-.qrread_area {
-  margin-top: 5px;
-}
-.qrread_area #pane-webcam .qr_video {
-  max-height: 300px;
-  display: none;
-}
-.qrread_area #pane-webcam .qr_canvas {
-  max-height: 300px;
-  display: none;
+input, label {
+  vertical-align: middle;
 }
 
-.modal-overlay {
-  display: none;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+.qrcode-text {
+  padding-right: 1.7em;
+  margin-right: 0;
 }
 
-.modal-overlay.is-show {
-  display: flex;
+.qrcode-text-btn {
+  display: inline-block;
+  background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
+  height: 1em;
+  width: 1.7em;
+  margin-left: -1.7em;
+  cursor: pointer;
 }/*# sourceMappingURL=ticket.css.map */

@@ -94,7 +94,52 @@ function initMap() {
               })
               .done((res) => {
                 console.log(res);
-                var html = '<a href=""><div>店名'+ res.name +'</div></a>';
+                // var html = '<div><a href="">店名'+ res.name +'</a></div>';
+                var shopPath = "shop/" + res.id;
+                var imgPath = "../images/customer/sp/no_image.png";
+                var shopName = "テスト店舗名テスト店舗名テスト店舗名テスト店舗名";
+                var shopTime = "00:00~00:00";
+                var shopCate = "カテゴリーテスト";
+                var shopMessage = "メッセージテストメッセージテストメッセージテストメッセージテストメッセージテストメッセージテストメッセージテスト";
+
+                var html = '<div class="shop_detail">'
+                         + '<a href="'+shopPath+'">'
+                         + '<div class="shop_detail_inner">'
+                         + '<div class="inner_upside">'
+                         + '<img src="'+imgPath+'">'
+                         + '<table>'
+                         + '<tr>'
+                         + '<td colspan="2" class="shop_name">'
+                         + shopName
+                         + '</td>'
+                         + '</tr>'
+                         + '<tr class="shop_business_hour">'
+                         + '<th>'
+                         + '営業時間'
+                         + '</th>'
+                         + '<td>'
+                         + shopTime
+                         + '</td>'
+                         + '</tr>'
+                         + '<tr class="shop_category">'
+                         + '<th>'
+                         + 'カテゴリー'
+                         + '</th>'
+                         + '<td>'
+                         + shopCate
+                         + '</td>'
+                         + '</tr>'
+                         + '</table>'
+                         + '</div>'
+                         + '<div class="inner_downside">'
+                         + '<p>'
+                         + shopMessage
+                         + '</p>'
+                         + '</div>'
+                         + '</div>'
+                         + '</a>'
+                         + '</div>'
+        
                 $('#subject').html(html);
               })
               //通信が失敗したとき
