@@ -10,7 +10,8 @@
 
 
 <div id="map"></div>
-<div id="subject"></div>
+<div id="subject">
+</div>
 
 
 <script src="{{ asset('js/customer/sp/map.js') }}"></script>

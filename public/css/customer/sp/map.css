@@ -2,11 +2,58 @@ body #content {
   padding: 30px 0px 40px;
 }
 body #content #map {
-  height: 75%;
+  height: 65%;
   width: 100%;
 }
 body #content #map .gm-style-mtc,
 body #content #map .gm-svpc,
 body #content #map .gm-control-active {
   display: none;
+}
+body #content #subject {
+  height: calc(35% - 80px);
+}
+body #content #subject .shop_detail {
+  margin: 10px 5px 0;
+}
+body #content #subject .shop_detail .shop_detail_inner {
+  padding: 5px;
+  border: 1px solid #ff3714;
+  border-radius: 5px;
+  background: #fff0ed;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside {
+  display: flex;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside img {
+  margin-right: 5px;
+  width: 120px;
+  height: 100px;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside table {
+  font-size: 12px;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside table th {
+  text-align: left;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside table td {
+  text-align: right;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_upside table td.shop_name {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_downside {
+  background: #eee;
+  overflow: hidden;
+  width: 100%;
+  margin: 5px 0;
+  font-size: 14px;
+  padding: 1px 9px;
+}
+body #content #subject .shop_detail .shop_detail_inner .inner_downside p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }/*# sourceMappingURL=map.css.map */
