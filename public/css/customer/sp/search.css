@@ -3,11 +3,11 @@
   margin: 10px auto 0;
 }
 .s_01 .accordion_one .accordion_header {
-  background-color: #ff3714;
+  background-color: #ff2424;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  padding: 5px 3%;
+  padding: 3px 3%;
   position: relative;
   z-index: 1;
   cursor: pointer;
@@ -22,7 +22,6 @@
   height: 18px;
   float: right;
   position: relative;
-  top: 0.3em;
   background-image: url(/images/customer/icons/icon_to_link.svg);
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
@@ -47,10 +46,10 @@
 .s_01 .accordion_one .accordion_inner {
   display: none;
   padding: 7px 14px;
-  background: #fff1ee;
-  border-left: 2px solid #ff3714;
-  border-right: 2px solid #ff3714;
-  border-bottom: 2px solid #ff3714;
+  background: #FFF;
+  border-left: 2px solid #ff2424;
+  border-right: 2px solid #ff2424;
+  border-bottom: 2px solid #ff2424;
   box-sizing: border-box;
   font-size: 12px;
 }
@@ -58,10 +57,12 @@
   margin-bottom: 7px;
   background: #FFF;
   display: block;
+  border: 1px solid #292929;
+  color: #292929;
 }
 .s_01 .accordion_one .accordion_inner .station_toggle .caution_area {
   font-size: 10px;
-  color: #ff3714;
+  color: #ff2424;
 }
 .s_01 .accordion_one .accordion_inner .category_toggle .category_mass {
   display: inline-block;
@@ -74,9 +75,68 @@
 .btn_area button {
   padding: 3px 10px;
   margin-top: 10px;
-  border: 1px solid #ff3714;
-  color: #ff3714;
+  border: 1px solid #ff2424;
+  color: #ff2424;
   border-radius: 5px;
   background: #FFF;
   font-size: 12px;
+}
+
+.search_result_area .list_count_area {
+  text-align: right;
+}
+.search_result_area .list_area {
+  margin: 10px 0;
+}
+.search_result_area .list_area .shop_detail {
+  border-bottom: 1px solid #c2c2c2;
+}
+.search_result_area .list_area .shop_detail:first-child {
+  border-top: 1px solid #c2c2c2;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner {
+  padding: 7px 2px 4px;
+  border-radius: 3px;
+  background: white;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside {
+  display: flex;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside img {
+  margin-right: 5px;
+  width: 120px;
+  height: 100px;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside table {
+  font-size: 12px;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside table th {
+  text-align: left;
+  font-weight: normal;
+  padding-left: 15px;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside table td {
+  text-align: right;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside table td.shop_name {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_downside {
+  background: #eee;
+  overflow: hidden;
+  width: 100%;
+  margin: 5px 0;
+  font-size: 12px;
+  padding: 1px 9px;
+}
+.search_result_area .list_area .shop_detail .shop_detail_inner .inner_downside p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#pagenator {
+  text-align: center;
 }/*# sourceMappingURL=search.css.map */
