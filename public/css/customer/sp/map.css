@@ -18,9 +18,10 @@ body #content #subject .shop_detail {
 }
 body #content #subject .shop_detail .shop_detail_inner {
   padding: 5px;
-  border: 1px solid #ff3714;
-  border-radius: 5px;
-  background: #fff0ed;
+  border-radius: 7px;
+  background: #FFF;
+  border-top: 1px solid #ff2424;
+  border-bottom: 1px solid #ff2424;
 }
 body #content #subject .shop_detail .shop_detail_inner .inner_upside {
   display: flex;
@@ -49,7 +50,7 @@ body #content #subject .shop_detail .shop_detail_inner .inner_downside {
   overflow: hidden;
   width: 100%;
   margin: 5px 0;
-  font-size: 14px;
+  font-size: 12px;
   padding: 1px 9px;
 }
 body #content #subject .shop_detail .shop_detail_inner .inner_downside p {

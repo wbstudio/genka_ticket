@@ -12,7 +12,7 @@
     <div class="section s_01">
         <div class="accordion_one">
             <div class="accordion_header">
-                駅を選択
+                ・駅を選択
                 <div class="go_button down"></div>
             </div>
             <div class="accordion_inner">
@@ -40,7 +40,7 @@
     <div class="section s_01">
         <div class="accordion_one">
             <div class="accordion_header">
-                カテゴリーを選択
+                ・カテゴリーを選択
                 <div class="go_button down"></div>
             </div>
             <div class="accordion_inner">
@@ -72,12 +72,58 @@
 
 <!-- List -->
 @if(isset($shops) && is_countable($shops))
-<div>
-    @foreach($shops as $shop)
-    <div>
-        {{$shop->name}}<br>{{$shop->DISTANCE}}
+<div class="search_result_area">
+    <div class="list_count_area">
+        10~20件目/100件中
     </div>
-    @endforeach
+    <div class="list_area">
+        @foreach($shops as $shop)
+        <div  @if($loop->odd == 1) class="shop_detail odd" @else class="shop_detail even" @endif>
+            <a href="">
+                <div class="shop_detail_inner">
+                    <div class="inner_upside">
+                        <img src="{{ asset('images/customer/sp/no_image.png')}}">
+                        <table>
+                            <tr>
+                                <td colspan="2" class="shop_name">
+                                    テスト店舗名テスト店舗名テスト店舗名テスト店舗名
+                                </td>
+                            </tr>
+                            <tr class="shop_business_hour">
+                                <th>
+                                    営業時間
+                                </th>
+                                <td>
+                                    00:00~00:00
+                                </td>
+                            </tr>
+                            <tr class="shop_category">
+                                <th>
+                                    カテゴリー
+                                </th>
+                                <td>
+                                    カテゴリーテスト
+                                </td>
+                            </tr>
+                            <tr class="shop_distance">
+                                <th>
+                                    ああああ駅から
+                                </th>
+                                <td>
+                                    0.256Km
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="inner_downside">
+                        <p>メッセージテストメッセージテストメッセージテストメッセージテストメッセージテストメッセージテストメッセージテスト</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
 </div>
 @else
 <div>記事がないです</div>

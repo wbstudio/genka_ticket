@@ -13,6 +13,11 @@
 <textarea id="result" readonly></textarea>
 <canvas id="canvas" width="240" height="240"></canvas>
 <textarea id="data" style="visibility: hidden;"></textarea>
+<div>
+    <p>
+        
+    </p>
+</div>
 
 @include('customer.sp.include.ticket_confirm_modal')
 <script src="{{ asset('js/customer/sp/ticket.js') }}"></script>

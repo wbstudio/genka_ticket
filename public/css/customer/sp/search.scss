@@ -1,5 +1,6 @@
-$mainColor: rgb(255, 55, 20);
-$subColor:rgb(255, 241, 238);
+$mainColor: #ff2424;
+$subColor:#ff2424;
+$shopListBgColor:rgb(255, 255, 255);
 
 //アコーディオン内
 .s_01 .accordion_one {
@@ -9,9 +10,9 @@ $subColor:rgb(255, 241, 238);
     .accordion_header {
         background-color: $mainColor;
         color: #fff;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bold;
-        padding: 5px 3%;
+        padding: 3px 3%;
         position: relative;
         z-index: +1;
         cursor: pointer;
@@ -27,7 +28,7 @@ $subColor:rgb(255, 241, 238);
             height: 18px;
             float: right;
             position: relative;
-            top: 0.3em;
+            // top: 0.3em;
             background-image: url(/images/customer/icons/icon_to_link.svg);
             transform: rotate(90deg);
             -webkit-transform: rotate(90deg);
@@ -56,7 +57,7 @@ $subColor:rgb(255, 241, 238);
     .accordion_inner {
         display: none;
         padding: 7px 14px;
-        background: $subColor;
+        background: #FFF;
         border-left: 2px solid $mainColor;
         border-right: 2px solid $mainColor;
         border-bottom: 2px solid $mainColor;
@@ -69,6 +70,8 @@ $subColor:rgb(255, 241, 238);
                 margin-bottom: 7px;
                 background: #FFF;
                 display: block;
+                border:1px solid #292929;
+                color: #292929;
             }
 
             .caution_area{
@@ -101,4 +104,84 @@ $subColor:rgb(255, 241, 238);
         background: #FFF;
         font-size: 12px;
     }
+}
+
+.search_result_area{
+
+    .list_count_area{
+        text-align: right;
+    }
+
+    .list_area{
+
+        margin: 10px 0;
+
+        .shop_detail{
+            border-bottom: 1px solid #c2c2c2;
+
+            &:first-child{
+                border-top: 1px solid #c2c2c2;
+            }
+        
+            // &.odd{
+            //     background: $shopListBgColor;
+            // }
+        
+            .shop_detail_inner{
+                padding: 7px 2px 4px;
+                // border: 3px double $subColor;
+                border-radius: 3px;
+                background: $shopListBgColor;
+        
+                .inner_upside{
+                    display: flex;
+        
+                    img{
+                        margin-right: 5px;
+                        width: 120px;
+                        height: 100px;
+                    }
+                    table{
+                        font-size: 12px;
+        
+                        th{
+                            text-align: left;
+                            font-weight: normal;
+                            padding-left: 15px;
+                        }
+                        td{
+                            text-align: right;
+        
+                            &.shop_name{
+                                font-size: 14px;
+                                font-weight: bold;
+                                text-align: left;
+                            }    
+        
+                        }
+                    }
+        
+                }
+        
+                .inner_downside{
+                    background: #eee;
+                    overflow: hidden;
+                    width: 100%;
+                    margin: 5px 0;
+                    font-size: 12px;
+                    padding: 1px 9px;
+        
+                    p {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }    
+    }
+}
+
+#pagenator{
+    text-align: center;
 }

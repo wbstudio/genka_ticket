@@ -1,3 +1,9 @@
+$mainColor: #ff2424;
+$subColor:#ff2424;
+$borderColor:#c2c2c2;
+$shopListBgColor:#FFF;
+$borderParam:1px solid $mainColor;
+
 body {
     #content {
         padding: 30px 0px 40px;
@@ -22,9 +28,10 @@ body {
 
                 .shop_detail_inner{
                     padding: 5px;
-                    border: 1px solid #ff3714;
-                    border-radius: 5px;
-                    background: #fff0ed;
+                    border-radius: 7px;
+                    background: $shopListBgColor;
+                    border-top: $borderParam;
+                    border-bottom: $borderParam;
 
                     .inner_upside{
                         display: flex;
@@ -60,7 +67,7 @@ body {
                         overflow: hidden;
                         width: 100%;
                         margin: 5px 0;
-                        font-size: 14px;
+                        font-size: 12px;
                         padding: 1px 9px;
 
                         p {

@@ -20,12 +20,13 @@ $(window).load(function(){
                 //testCode
                 // var customeId = 5;
                 //読み取りのres[0]とかではじかないといけない？
-                console.log(res);
-                console.log(customeId);
-                insertAjax(res[2],res[4],res[6],customeId);
+                $('.ticket_confirm_modal').fadeIn();
+          
+
+                // insertAjax(res[2],res[4],res[6],customeId);
 
                   clearInterval(loop);
-                  return res(result.data);
+                  return result.data;
               }
           }, 100);
       });
@@ -155,6 +156,9 @@ function openWebcam(e) {
     $(video).hide();
   }
 
+function modalOpen(shop_id,service_id,ticket_count,customer_id){
+
+}
 
 function insertAjax(shop_id,service_id,ticket_count,customer_id){
     $.ajax({
