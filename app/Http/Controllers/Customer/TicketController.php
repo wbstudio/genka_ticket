@@ -8,12 +8,13 @@ use \App\Http\Controllers\CommonController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use \App\Models\Customer;
 use \App\Models\Subscription;
 use \App\Models\Ticket;
 use \App\Models\Payment;
 use \App\Consts\TicketConsts;
 use Carbon\Carbon;
+use \App\Models\Customer\Customer;
+
 
 
 class TicketController extends Controller
@@ -26,7 +27,10 @@ class TicketController extends Controller
         $commonController->selectBrowser();
         $page_title = "原チケ-Ticket";
         $page_type = "TICKET";
-        $customerData["customer_id"] = session('id');
+
+        $customerId = session('id');
+        $mdCustomer= new Customer();
+        $customerData = $mdCustomer->getCustomerInfoById($customerId);
 
 
         $dispData = [

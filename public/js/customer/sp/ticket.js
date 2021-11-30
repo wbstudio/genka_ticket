@@ -12,15 +12,22 @@ $(window).load(function(){
               const result = jsQR(img.data, img.width, img.height);
 
               if(result){
-                console.log(result);
+                // console.log(result);
                 var message = result.data;
                         //gen-chike/shop/5/service/3/ticket/2
                 var res = message.split('/');
                 var customeId = document.getElementById("customer_id").value;
+                var ticketCnt = document.getElementById("ticket_cnt").value;
                 //testCode
                 // var customeId = 5;
                 //読み取りのres[0]とかではじかないといけない？
-                $('.ticket_confirm_modal').fadeIn();
+                console.log(customeId);
+                console.log(ticketCnt);
+                if(ticketCnt > Number(res[6])){
+                    insertAjax(res[2],res[4],res[6],customeId);
+                }else{
+                  window.location.href = "/customer/ticket/shortage";
+                }
           
 
                 // insertAjax(res[2],res[4],res[6],customeId);
@@ -30,7 +37,8 @@ $(window).load(function(){
               }
           }, 100);
       });
-  }
+    }
+
 
   function qrGenerate(data){
       const canvas = new OffscreenCanvas(1, 1);
@@ -75,7 +83,7 @@ function scan(e) {
         const data = jsQR(imageData.data, imageData.width, imageData.height);
         if (data) {
           const message = data.data;
-          console.log("message:", message); // message: "あいうえお"
+          // console.log("message:", message); // message: "あいうえお"
         }
       };
       const dataURL = theFile.target.result;
@@ -126,15 +134,13 @@ function openWebcam(e) {
         // 解析成功！
       if (data) {
         const message = data.data; // QRコードからメッセージを取得
-        console.log("message:", message);
         //gen-chike/shop/5/service/3/ticket/2
         var res = message.split('/');
         var customeId = document.getElementById("customer_id").value;
         //testCode
         // var customeId = 5;
         //読み取りのres[0]とかではじかないといけない？
-        console.log(res);
-        console.log(customeId);
+        
         insertAjax(res[2],res[4],res[6],customeId);
       }
       // Webカメラの停止
@@ -161,24 +167,33 @@ function modalOpen(shop_id,service_id,ticket_count,customer_id){
 }
 
 function insertAjax(shop_id,service_id,ticket_count,customer_id){
-    $.ajax({
-        type: "get", //HTTP通信の種類
-        url: "/ajax/ticket_use_insert/shop/" + shop_id + "/service/" + service_id + "/ticket/" + ticket_count + "/customer/" + customer_id,
-        dataType: "json",
-    }).done((response) => {
-        console.log(response);
-        if(response.result){
-            //成功→thanksへリダイレクト
-            window.location.href = "/customer/ticket/thanks";
-        }else if(response.status == 0){
-            //失敗(枚数足りない)→ticket購入ページへのリンクのあるページへリダイレクト
-            window.location.href = "/customer/ticket/shortage";
-        }else{
-            //失敗(パラメータ不正)→alertを出して同じページへリダイレクト
-            alert("パラメーター不正です。再度読み取りをお願いします。");
-            location.reload();
-        }
-    }).fail((error) => {
-        console.log(error.statusText);
+    console.log(customer_id);
+    $('.ticket_confirm_modal').fadeIn();
+    $('.ticket_use').click(function() {
+      $.ajax({
+          type: "get", //HTTP通信の種類
+          url: "/ajax/ticket_use_insert/shop/" + shop_id + "/service/" + service_id + "/ticket/" + ticket_count + "/customer/" + customer_id,
+          dataType: "json",
+      }).done((response) => {
+          console.log(response);
+          if(response.result){
+              //成功→thanksへリダイレクト
+              window.location.href = "/customer/ticket/thanks";
+          }else if(response.status == 0){
+              //失敗(枚数足りない)→ticket購入ページへのリンクのあるページへリダイレクト
+              window.location.href = "/customer/ticket/shortage";
+          }else{
+              //失敗(パラメータ不正)→alertを出して同じページへリダイレクト
+              alert("パラメーター不正です。再度読み取りをお願いします。");
+              location.reload();
+          }
+      }).fail((error) => {
+          console.log(error.statusText);
+        });
     });
+
+    $('.js-modal-close').on('click',function(){
+      window.location.href = "/customer/ticket";
+    });
+    
 }

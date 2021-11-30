@@ -15,11 +15,12 @@
 <textarea id="data" style="visibility: hidden;"></textarea>
 <div>
     <p>
-        
+
     </p>
 </div>
 
 @include('customer.sp.include.ticket_confirm_modal')
 <script src="{{ asset('js/customer/sp/ticket.js') }}"></script>
-<input type="hidden" id="customer_id" value="{{$customerData['customer_id']}}">
+<input type="hidden" id="customer_id" value="{{$customerData->id}}">
+<input type="hidden" id="ticket_cnt" value="{{$customerData->ticket}}">
 @endsection
