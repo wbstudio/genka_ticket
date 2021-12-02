@@ -1,5 +1,25 @@
 <div id="footer">
-    <ul>
+    あたらしいフッターは<br>
+    全部できたら最後に作成<br>
+   <ここにちょっとメモ><br>
+   アイコン,ボタンの色--未定<br>
+   サイトの色合い--未定<br>
+   ボタンとかアイコン黄色だと見てて疲れる<br>
+   フッターは固定じゃなくする<br>
+   Menu--デザイン未定<br>
+   ・home--logo出来たらメニューの最上位にド～ンと入れたいかも<br>
+   ・ticket<br>
+   ・Map<br>
+   ・search<br>
+   ・bill<br>
+   ・履歴<br>
+   ・プロフ<br>
+   ・といあわせ<br>
+   ・how to<br>
+   ・news<br>
+   ・会社情報<br>
+   ・log out<br>
+    <!-- <ul>
         <li @if(isset($pageType) && $pageType == "HOME")class="active" @endif>
             <a href="{{ route('customer.home')}}">
                 <div class="container">
@@ -83,5 +103,5 @@
                 </div>
             </a>
         </li>
-    </ul>
+    </ul> -->
 </div>

@@ -1,0 +1,129 @@
+$titleBgColor:#f0eab6;
+
+
+.home_title{
+    text-align: right;
+    font-weight: bold;
+
+    .home_ticket{
+        font-weight: normal;
+        font-size: 14px;
+
+    }
+}
+
+#slider{
+    max-width: 375px;
+    margin: 30px auto 0;
+    overflow: hidden;
+    text-align: center;
+
+    .swiper-container{
+        text-align: center;
+
+        .swiper-wrapper{
+            height: 190px;
+    
+            .swiper-slide{
+                height: 190px;
+
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        
+        }
+    }
+
+    .swiper-pagination-horizontal{
+        position: relative;
+        bottom: 0px;
+    }
+}
+
+//見出し
+h2{
+    position: relative;
+    line-height: 1.4;
+    padding: 0.5em 0.5em 0.5em 2.8em;
+    font-size: 18px;
+    font-weight: bold;
+    //icon-color  #ffd52c
+    border-bottom: 3px double #1f1f1f;
+
+    .sub_title{
+        font-size: 14px;
+    }
+}
+  
+h2:before {
+    content: url('../../../images/customer/icons/icon_point.png');
+    font-weight: 900;
+    position: absolute;
+    left : 0.6em; /*左端からのアイコンまでの距離*/
+}
+
+p{
+    padding: 20px 0;
+}
+
+//Link
+.button_area{
+    text-align: center;
+    margin: 20px;
+
+    a{
+        font-weight: bold;
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        padding: 0.5em 2em;
+        width: 200px;
+        color: #1f1f1f;
+        font-size: 18px;
+        font-weight: 700;
+        background-color: #ffd52c;
+        border-radius: 50vh;
+        transition: 0.3s;
+        box-shadow: 3px 3px 7px #bbbbbb;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 8.5px;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: #fff6d3;
+            border-radius: 50vh;
+        }
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            border-top: 3px solid #1f1f1f;
+            border-right: 3px solid #1f1f1f;
+        }
+        
+        &:hover {
+            text-decoration: none;
+            background-color: #cccccc;
+        }
+
+    }
+}
+
+.wide_button{
+
+    a{
+       font-size: 16px;
+       width: 285px; 
+    }
+}

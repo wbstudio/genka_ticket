@@ -1,39 +1,43 @@
 // $mainColor: #fdf380;
 $mainColor: #ffffff;
 $subColor:#ff2424;
-$fontColor:#292929;
+$fontColor:#1f1f1f;
 $borderColor:#c2c2c2;
 
 body{
     margin: 0;
     color:$fontColor;
+    font-family: 'Zen Maru Gothic', sans-serif;
 
     //header
     header{
         position: fixed;
         width: 100%;
-        height: 30px;
-        background: $subColor;
-        border-bottom: 1px solid $borderColor;
-        box-shadow: 1px 3px 5px grey;
+        height: 42px;
+        // background: $subColor;
+        text-align: center;
+        // border-bottom: 1px solid $borderColor;
+        box-shadow: 1px 3px 5px #e2e2e2;
+        background: rgba(256,256,256,0.95);
+        z-index: 99 !important;
 
         .to_home{
             img{
                 display: inline-block !important;
-                height: 27px;
-                margin: 2px 0 0 3px;
+                height: 42px;
+                // margin: 2px 0 0 3px;
             }
         }
 
         .menu_icon{
-            width: 25px;
             float: right;
-            padding-top: 4px;
-            height: 30px;
+            position: relative;
+            top: 14px;
+            right: 10px;
             img{
-                width: 20px;
-                height: 20px;
-                display: inline-block !important;
+                width: 17px;
+                // height: 20px;
+                // display: inline-block !important;
             }
         }
     }
@@ -46,7 +50,7 @@ body{
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 10;
+        z-index: 100;
 
         .modal__bg{
             background: rgba(0,0,0,0.8);
@@ -112,13 +116,22 @@ body{
     //modal--end
 
     #content{
-        padding:50px 10px 40px;
+        padding:65px 10px 40px;
+    }
+
+    .partition{
+        background: #e6e6e6;
+        height: 15px;
+        position: relative;
+        left: -10px;
+        width: calc(100% + 20px);
+        margin: 30px 0 10px;
     }
 
     //footer
     footer{
         
-        position: fixed;
+        // position: fixed;
         bottom: 0;
         left: 0;
         border-top: 1px solid $borderColor;
