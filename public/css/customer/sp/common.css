@@ -1,30 +1,29 @@
 body {
   margin: 0;
-  color: #292929;
+  color: #1f1f1f;
+  font-family: "Zen Maru Gothic", sans-serif;
 }
 body header {
   position: fixed;
   width: 100%;
-  height: 30px;
-  background: #ff2424;
-  border-bottom: 1px solid #c2c2c2;
-  box-shadow: 1px 3px 5px grey;
+  height: 42px;
+  text-align: center;
+  box-shadow: 1px 3px 5px #e2e2e2;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 99 !important;
 }
 body header .to_home img {
   display: inline-block !important;
-  height: 27px;
-  margin: 2px 0 0 3px;
+  height: 42px;
 }
 body header .menu_icon {
-  width: 25px;
   float: right;
-  padding-top: 4px;
-  height: 30px;
+  position: relative;
+  top: 14px;
+  right: 10px;
 }
 body header .menu_icon img {
-  width: 20px;
-  height: 20px;
-  display: inline-block !important;
+  width: 17px;
 }
 body .modal {
   display: none;
@@ -32,7 +31,7 @@ body .modal {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
 }
 body .modal .modal__bg {
   background: rgba(0, 0, 0, 0.8);
@@ -87,10 +86,17 @@ body .modal .modal__content ul li a {
   color: #000;
 }
 body #content {
-  padding: 50px 10px 40px;
+  padding: 65px 10px 40px;
+}
+body .partition {
+  background: #e6e6e6;
+  height: 15px;
+  position: relative;
+  left: -10px;
+  width: calc(100% + 20px);
+  margin: 30px 0 10px;
 }
 body footer {
-  position: fixed;
   bottom: 0;
   left: 0;
   border-top: 1px solid #c2c2c2;
