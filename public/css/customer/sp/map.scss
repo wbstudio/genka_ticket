@@ -2,7 +2,7 @@ $mainColor: #ff2424;
 $subColor:#ff2424;
 $borderColor:#c2c2c2;
 $shopListBgColor:#FFF;
-$borderParam:1px solid $mainColor;
+$borderParam:1px solid #c2c2c2;
 
 body {
     #content {
@@ -28,7 +28,6 @@ body {
 
                 .shop_detail_inner{
                     padding: 5px;
-                    border-radius: 7px;
                     background: $shopListBgColor;
                     border-top: $borderParam;
                     border-bottom: $borderParam;
