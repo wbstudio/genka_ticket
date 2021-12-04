@@ -54,12 +54,12 @@ body .modal .modal__content .modal_head {
   border-bottom: 1px solid #dcdcdc;
 }
 body .modal .modal__content .modal_head .modal_head_name {
-  height: 45px;
-  display: table-cell;
   vertical-align: middle;
-  padding-left: 10px;
   font-size: 18px;
   font-weight: bold;
+}
+body .modal .modal__content .modal_head .modal_head_name img {
+  width: 100%;
 }
 body .modal .modal__content .modal_head .js-modal-close {
   background-image: url(/images/customer/icons/icon_cancel.svg);
@@ -71,22 +71,41 @@ body .modal .modal__content .modal_head .js-modal-close {
   top: 13px;
   left: 90%;
 }
-body .modal .modal__content ul {
-  padding-left: 0px;
-  margin: 0;
-  list-style: none;
+body .modal .modal__content table {
+  width: 100%;
 }
-body .modal .modal__content ul li {
-  font-size: 14px;
-  padding: 10px;
-  border-bottom: 1px solid #dcdcdc;
+body .modal .modal__content table td {
+  padding: 5px 0;
 }
-body .modal .modal__content ul li a {
-  text-decoration: none;
-  color: #000;
+body .modal .modal__content table td .inner_contents {
+  border: 1px solid #c2c2c2;
+  border-radius: 3px;
+  box-shadow: 1px 3px 5px #e2e2e2;
+  text-align: center;
+}
+body .modal .modal__content table tr.single td {
+  width: 100%;
+}
+body .modal .modal__content table tr.single td .inner_contents {
+  margin: 0 auto;
+  width: 90%;
+  padding: 5px;
+}
+body .modal .modal__content table tr.double td {
+  width: 50%;
+}
+body .modal .modal__content table tr.double td .inner_contents {
+  width: 88%;
+  padding: 15px;
+}
+body .modal .modal__content table tr.double td .inner_contents.left {
+  margin: 0 2% 0 10%;
+}
+body .modal .modal__content table tr.double td .inner_contents.right {
+  margin: 0 10% 0 2%;
 }
 body #content {
-  padding: 65px 10px 40px;
+  padding: 65px 10px 0px;
 }
 body .partition {
   background: #e6e6e6;
@@ -95,6 +114,9 @@ body .partition {
   left: -10px;
   width: calc(100% + 20px);
   margin: 30px 0 10px;
+}
+body .partition:last-child {
+  margin: 30px 0 0px;
 }
 body footer {
   bottom: 0;
