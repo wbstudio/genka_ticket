@@ -18,10 +18,9 @@ body #content #subject .shop_detail {
 }
 body #content #subject .shop_detail .shop_detail_inner {
   padding: 5px;
-  border-radius: 7px;
   background: #FFF;
-  border-top: 1px solid #ff2424;
-  border-bottom: 1px solid #ff2424;
+  border-top: 1px solid #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
 }
 body #content #subject .shop_detail .shop_detail_inner .inner_upside {
   display: flex;
