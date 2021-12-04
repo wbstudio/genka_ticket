@@ -15,6 +15,11 @@
         <span class="home_ticket">(残りチケット&nbsp;:&nbsp;{{$customerData -> ticket}}枚)</span>
     </div>
 
+    <div>
+        <div>お知らせ</div>
+        <div>現在お知らせはありません</div>
+    </div>
+
     <div id="slider">
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -159,7 +164,7 @@
     <div class="partition"></div>
 
     <div id="home_qr">
-        <h2>Ticket利用<span class="sub_title">(QR読み取り)</span></h2>
+        <h2>りれき</h2>
         <div>
             <p>
                 お店で発行されているQRコードを次のページで読み取れば<br>

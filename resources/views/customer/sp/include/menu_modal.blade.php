@@ -3,12 +3,70 @@
     <div class="modal__content">
         <div class="modal_head">
             <div class="modal_head_name">
-                <span>Menu</span>
+                <img src="{{ asset('images/customer/sp/modal_logo.png')}}">
             </div>
             <div class="js-modal-close"></div>                
         </div>
         <div class="modal_contents">
-            <ul>
+            <table>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">HOME</div>
+                    </td>
+                </tr>
+                <tr class="double">
+                    <td>
+                        <div class="inner_contents left">Search</div>
+                    </td>
+                    <td>
+                        <div class="inner_contents right">Map</div>
+                    </td>
+                </tr>
+                <tr class="double">
+                    <td>
+                        <div class="inner_contents left">Ticket</div>
+                    </td>
+                    <td>
+                        <div class="inner_contents right">Bill</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">履歴</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">プロフ</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">といあわせ</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">how to</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">news</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">会社情報</div>
+                    </td>
+                </tr>
+                <tr class="single">
+                    <td colspan="2">
+                        <div class="inner_contents">log out</div>
+                    </td>
+                </tr>
+            </table>
+            <!-- <ul>
                 <li>
                     <a href="{{ route('customer.history')}}">
                         <div class="link_mass">
@@ -51,7 +109,7 @@
                         </div>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div><!--modal__inner-->
 </div><!--modal-->

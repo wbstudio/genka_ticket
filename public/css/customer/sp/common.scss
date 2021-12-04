@@ -75,12 +75,16 @@ body{
                 border-bottom: 1px solid #dcdcdc;
 
                 .modal_head_name{
-                    height: 45px;
-                    display: table-cell;
+                    // height: 45px;
+                    // display: table-cell;
                     vertical-align: middle;
-                    padding-left: 10px;
+                    // padding-left: 10px;
                     font-size: 18px;
                     font-weight: bold;
+
+                    img{
+                        width: 100%;
+                    }
                 }
 
                 .js-modal-close{
@@ -95,28 +99,70 @@ body{
                 }
             }
 
-            ul{
-                padding-left: 0px;
-                margin: 0;
-                list-style: none;
+            table{
+                width: 100%;
 
-                li{
-                    font-size: 14px;
-                    padding: 10px;
-                    border-bottom: 1px solid #dcdcdc;
-
-                    a{
-                        text-decoration: none;
-                        color: #000;
+                td{
+                    padding: 5px 0;
+                    .inner_contents{
+                        border: 1px solid #c2c2c2;
+                        border-radius: 3px;
+                        box-shadow: 1px 3px 5px #e2e2e2;
+                        text-align: center;
                     }
-                }                
             }
+
+                tr.single{
+                    td{
+                        width: 100%;
+                        .inner_contents{
+                            margin: 0 auto;
+                            width:90%;
+                            padding: 5px;
+                        }
+                    }
+                }
+                tr.double{
+                    td{
+                        width: 50%;
+
+                        .inner_contents{
+                            
+                            width: 88%;
+                            padding: 15px;
+
+                            &.left{
+                                margin: 0 2% 0 10%;
+                            }
+                            &.right{
+                                margin: 0 10% 0 2%;
+                            }
+                        }
+                    }
+                }
+            }
+            // ul{
+            //     padding-left: 0px;
+            //     margin: 0;
+            //     list-style: none;
+
+            //     li{
+            //         font-size: 14px;
+            //         padding: 10px;
+            //         border-bottom: 1px solid #dcdcdc;
+
+            //         a{
+            //             text-decoration: none;
+            //             color: #000;
+            //         }
+            //     }                
+            // }
         }
     }
     //modal--end
 
     #content{
-        padding:65px 10px 40px;
+        padding:65px 10px 0px;
     }
 
     .partition{
@@ -126,6 +172,10 @@ body{
         left: -10px;
         width: calc(100% + 20px);
         margin: 30px 0 10px;
+
+        &:last-child{
+            margin: 30px 0 0px;
+        }
     }
 
     //footer
