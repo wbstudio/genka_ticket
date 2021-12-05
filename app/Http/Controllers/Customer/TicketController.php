@@ -85,7 +85,7 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         // ログインユーザー取得
         $customer = Auth::user();
@@ -99,12 +99,7 @@ class TicketController extends Controller
         $checkout_session = \Stripe\Checkout\Session::create([
             'line_items' => [[
                 'price' => env('STRIPE_SINGLE_PRICE_KEY'), // 追加購入
-                'adjustable_quantity' => [
-                    'enabled' => true,
-                    'maximum' => 999,
-                    'minimum' => 1
-                ],
-                'quantity' => 1
+                'quantity' => (int)$request->request->get('quantity')
             ]],
             'payment_method_types' => [
                 'card',
