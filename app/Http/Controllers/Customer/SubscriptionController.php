@@ -193,7 +193,7 @@ class SubscriptionController extends Controller
 
             // データ保存処理
             $item = $stripe->checkout->sessions->allLineItems($stripeSessionId, ['limit' => 1]);
-            $ticketQuantity = $item->data[0]->quantity;
+            $ticketQuantity = TicketConsts::SUBSCRIPTION_TICKET_INFO['quantity'];
             $amount = $item->data[0]->amount_total;
 
             DB::beginTransaction();
