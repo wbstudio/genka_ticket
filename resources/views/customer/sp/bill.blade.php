@@ -76,29 +76,6 @@
         </form>
     </div>
     <div class="mb-5">
-        @if(count($tickets) > 0)
-        <h2 class="mb-5">追加購入履歴</h2>
-        <table class="mb-4 mx-auto text-center w-full border-collapse">
-            <tr>
-                <th class="bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"></th>
-                <th class="bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">購入日</th>
-                <th class="bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">数量</th>
-                <th class="bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">合計金額(税込)</th>
-            </tr>
-            @foreach ($tickets as $key => $ticket)
-            <tr>
-                <td class="border-b border-grey-light">{{ $key + 1 }}</td>
-                <td class="border-b border-grey-light"><p class="font-bold text-right">{{ $ticket->created_at->format('Y年m月d日') }}</p></td>
-                <td class="border-b border-grey-light">
-                    <p class="text-right">{{ number_format($ticket->count) }} 枚</p>
-                </td>
-                <td class="border-b border-grey-light">
-                    <p class="text-right">{{ number_format($ticket->payment->amount) }} 円</p>
-                </td>
-            </tr>
-            @endforeach
-        </table>
-        @endif
         <form action="{{ route('ticket.create') }}" method="get">
             <div class="submit text-center">
                 <button type="submit" class="p-2 pl-5 pr-5 bg-transparent border-2 border-red-500 text-red-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-red-500 hover:text-gray-100 focus:border-4 focus:border-red-300">追加購入する</button>

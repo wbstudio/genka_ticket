@@ -23,14 +23,10 @@ class BillController extends Controller
         $customerId = Auth::id();
         $subscription = Subscription::getSubscription($customerId);
 
-        // 追加購入データ取得
-        $tickets = Ticket::getTicketLogs($customerId, TicketConsts::TICKET_STATUS['SINGLE']);
-
         $dispData = [
             'pageTitle'    => $page_title,
             'pageType'     => $page_type,
             'subscription' => $subscription,
-            'tickets'      => $tickets
         ];
         
         return view('customer.' . USER_AGENT . '.bill', $dispData);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \App\Consts\TicketConsts;
 
 class Ticket extends Model
 {
@@ -22,22 +23,26 @@ class Ticket extends Model
     {
         return $this->belongsTo('App\Models\Payment');
     }
+    public function service()
+    {
+        return $this->belongsTo('App\Models\Service');
+    }
+
 
     /**
      * 有効な継続課金を取得
      * 
      * @param int $customerId ユーザーID
-     * @param bool $status 増減種別
      * 
      * @return array $tickets
      */
-    static public function getTicketLogs($customerId, $status)
+    static public function getUsageHistory($customerId)
     {
         $query = self::from('tickets');
 
         $query->where([
             'customer_id' => $customerId,
-            'status'      => $status,
+            'status'      => TicketConsts::TICKET_STATUS['USED'],
             'delete_flag' => 0
         ]);
 
