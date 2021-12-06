@@ -11,58 +11,78 @@
             <table>
                 <tr class="single">
                     <td colspan="2">
-                        <div class="inner_contents">HOME</div>
+                        <a href="{{ route('customer.home') }}">
+                            <div class="inner_contents">HOME</div>
+                        </a>
                     </td>
                 </tr>
                 <tr class="double">
                     <td>
-                        <div class="inner_contents left">Search</div>
+                        <a href="{{ route('customer.search')}}">
+                            <div class="inner_contents left">Search</div>
+                        </a>
                     </td>
                     <td>
-                        <div class="inner_contents right">Map</div>
+                        <a href="{{ route('customer.map')}}">
+                            <div class="inner_contents right">Map</div>
+                        </a>
                     </td>
                 </tr>
                 <tr class="double">
                     <td>
-                        <div class="inner_contents left">Ticket</div>
+                        <a href="{{ route('customer.ticket')}}">
+                            <div class="inner_contents left">Ticket</div>
+                        </a>
                     </td>
                     <td>
-                        <div class="inner_contents right">Bill</div>
+                        <a href="{{ route('customer.bill')}}">
+                            <div class="inner_contents right">Bill</div>
+                        </a>
                     </td>
                 </tr>
                 <tr class="single">
                     <td colspan="2">
-                        <div class="inner_contents">履歴</div>
+                        <a href="{{ route('customer.history')}}">
+                            <div class="inner_contents">履歴</div>
+                        </a>
                     </td>
                 </tr>
                 <tr class="single">
                     <td colspan="2">
+                    <a href="{{ route('customer.profile')}}">
                         <div class="inner_contents">プロフ</div>
+                    </a>
                     </td>
                 </tr>
-                <tr class="single">
+                <!-- <tr class="single">
                     <td colspan="2">
                         <div class="inner_contents">といあわせ</div>
                     </td>
-                </tr>
+                </tr> -->
                 <tr class="single">
                     <td colspan="2">
-                        <div class="inner_contents">how to</div>
+                        <a href="{{ route('customer.explanation')}}">
+                            <div class="inner_contents">how to</div>
+                        </a>    
                     </td>
                 </tr>
                 <tr class="single">
                     <td colspan="2">
-                        <div class="inner_contents">news</div>
+                        <a href="{{ route('customer.explanation')}}">
+                            <div class="inner_contents">news</div>
+                        </a>
                     </td>
                 </tr>
-                <tr class="single">
+                <!-- <tr class="single">
                     <td colspan="2">
                         <div class="inner_contents">会社情報</div>
                     </td>
-                </tr>
+                </tr> -->
                 <tr class="single">
                     <td colspan="2">
-                        <div class="inner_contents">log out</div>
+                        <a href="{{ route('customer.logout') }}">
+                            <div class="inner_contents">log out</div>
+                        </a>
                     </td>
                 </tr>
             </table>
