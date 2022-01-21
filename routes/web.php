@@ -78,22 +78,9 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
 
 });
 
-
 //Ajax
 Route::get('/ajax/shop/{shop_id}', [\App\Http\Controllers\Ajax\ShopController::class, 'selectShopPushMaekerId']);
 Route::get('/ajax/ticket_use_insert/shop/{shop_id}/service/{service_id}/ticket/{ticket_count}/customer/{customer_id}', [\App\Http\Controllers\Ajax\TicketController::class, 'insertUseTicketData']);
-
-Route::prefix('shops')->middleware('auth:shops')->group(function(){
-
- Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });
-
-});
-
-Route::prefix('admins')->middleware('auth:admins')->group(function(){
-
- Route::get('dashboard', function(){ return 'アスリートでログイン完了'; });
-
-});
 
 // Stripe Webhook
 Route::post('stripe/webhook', [\App\Http\Controllers\WebhookController::class, 'handleWebhook']);
@@ -101,3 +88,34 @@ Route::post('stripe/webhook', [\App\Http\Controllers\WebhookController::class, '
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+/*
+|--------------------------------------------------------------------------
+| Shop(店舗周り)
+|--------------------------------------------------------------------------
+*/
+//店舗用LP
+// Route::get('shops', [\App\Http\Controllers\Customer\CustomerController::class, 'showLoginForm'])->name('shops.login');
+
+//店舗管理画面Login周り
+Route::get('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, 'showLoginForm'])->name('shops.login');
+Route::post('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, 'login']);
+
+//店舗管理画面Login後ページ
+Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
+    Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| admin(wb-studio管理)
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admins')->middleware('auth:admins')->group(function(){
+
+ Route::get('dashboard', function(){ return 'アスリートでログイン完了'; });
+
+});
+

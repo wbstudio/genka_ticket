@@ -2,14 +2,32 @@ $titleBgColor:#f0eab6;
 
 
 .home_title{
-    text-align: right;
-    font-weight: bold;
+    .home_name{
+        font-weight: bold;
+    }
 
     .home_ticket{
-        font-weight: normal;
         font-size: 14px;
-
+        font-weight: normal;
     }
+
+    .home_add{
+        font-size: 14px;
+        margin-top: 2px;
+    }
+
+}
+
+.home_notice{
+    padding: 3px;
+    border: 3px double #1f1f1f;
+    font-size: 14px;
+    margin-top: 20px;
+
+    .notice_title{
+        font-weight: bold;
+    }
+
 }
 
 #slider{
