@@ -10,17 +10,24 @@
 
 @section('content')
 <div>
+
     <div class="home_title">
-        {{$customerData -> name}}さんのマイページ<br>
-        <span class="home_ticket">(残りチケット&nbsp;:&nbsp;{{$customerData -> ticket}}枚)</span>
+        <div class="home_name">{{$customerData -> name}}さんのマイページ<span class="home_ticket">&nbsp; (残チケット:&nbsp;{{$customerData -> ticket}}枚)</span></div>
+        <div class="home_add">
+            <a href="{{ route('customer.bill')}}">
+                &rArr;チケット追加はこちら
+            </a>
+        </div>
     </div>
 
-    <div>
-        <div>お知らせ</div>
-        <div>現在お知らせはありません</div>
+    <div class="partition" style="display:none;"></div>
+
+    <div class="home_notice" style="display:none;">
+        <div class="notice_title">お知らせ</div>
+        <div class="notice_content">現在お知らせはありません</div>
     </div>
 
-    <div id="slider">
+    <!-- <div id="slider">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -84,33 +91,25 @@
             })
         </script>
 
-    </div>
+    </div> -->
 
     <div class="partition"></div>
 
     <div id="home_qr">
-        <h2>Ticket利用<span class="sub_title">(QR読み取り)</span></h2>
+        <h2>店舗検索</h2>
         <div>
             <p>
-                お店で発行されているQRコードを次のページで読み取れば<br>
-                簡単にチケット利用できます。
+                「現在地」「駅、カテゴリー」「履歴」から<br>
+                あなた好みのお店を検索できます。
             </p>
             <div class="button_area">
-                <a href="">Ticketを使う</a>
+                <a href="">現在地から検索</a>
             </div>
-        </div>
-    </div>
-
-    <div class="partition"></div>
-
-    <div id="home_qr">
-        <h2>駅・カテゴリーから検索</h2>
-        <div>
-            <p>
-                駅名、カテゴリーで絞り込んであなた好みのお店を検索できます。
-            </p>
             <div class="button_area">
-                <a href="">お店を検索</a>
+                <a href="">駅名・カテゴリーから検索</a>
+            </div>
+            <div class="button_area">
+                <a href="">履歴</a>
             </div>
         </div>
     </div>

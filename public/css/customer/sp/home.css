@@ -1,11 +1,24 @@
 @charset "UTF-8";
-.home_title {
-  text-align: right;
+.home_title .home_name {
   font-weight: bold;
 }
 .home_title .home_ticket {
-  font-weight: normal;
   font-size: 14px;
+  font-weight: normal;
+}
+.home_title .home_add {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.home_notice {
+  padding: 3px;
+  border: 3px double #1f1f1f;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.home_notice .notice_title {
+  font-weight: bold;
 }
 
 #slider {
