@@ -96,7 +96,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 //店舗用LP
-// Route::get('shops', [\App\Http\Controllers\Customer\CustomerController::class, 'showLoginForm'])->name('shops.login');
+Route::get('shops', [\App\Http\Controllers\Shops\ShopController::class, 'index'])->name('shops.index');
+Route::get('shops/registEmail', [\App\Http\Controllers\Shops\ShopController::class, 'registEmail'])->name('shops.showRegistEmailForm');
+Route::post('shops/confirmRegistEmail', [\App\Http\Controllers\Shops\ShopController::class, 'confirmRegistEmail'])->name('shops.confirmRegistEmail');
+Route::post('shops/completeRegistEmail', [\App\Http\Controllers\Shops\ShopController::class, 'completeRegistEmail'])->name('shops.completeRegistEmail');
 
 //店舗管理画面Login周り
 Route::get('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, 'showLoginForm'])->name('shops.login');
@@ -104,7 +107,16 @@ Route::post('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, '
 
 //店舗管理画面Login後ページ
 Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
-    Route::get('dashboard', function(){ return 'ミュージシャンでログイン完了'; });
+    //店舗基本情報を入れる前のroute
+    Route::get('/registInfo', [\App\Http\Controllers\Shops\ShopController::class, 'showRegistInfoForm'])->name('shops.registInfo');
+    Route::post('/registInfo/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'confirmRegistInfoForm'])->name('shops.confirmInfo');
+    Route::post('/registInfo/complete', [\App\Http\Controllers\Shops\ShopController::class, 'completeRegistInfoForm'])->name('shops.completeInfo');
+    Route::get('/adminConfirm', [\App\Http\Controllers\Shops\ShopController::class, 'showAdminConfirmMessage'])->name('shops.adminConfirm');
+
+    //店舗基本情報を入れた後のroute
+    Route::get('/home', [\App\Http\Controllers\Shops\ShopController::class, 'home'])->name('shops.home');
+    Route::get('/setting', [\App\Http\Controllers\Shops\ShopController::class, 'showSettingForm'])->name('shops.setting');
+    Route::get('/offerMenu', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuForm'])->name('shops.offer_menu');
 });
 
 
@@ -113,9 +125,25 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
 | admin(wb-studio管理)
 |--------------------------------------------------------------------------
 */
-Route::prefix('admins')->middleware('auth:admins')->group(function(){
+Route::get('wb-studio/admin', [\App\Http\Controllers\Admin\AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('wb-studio/admin', [\App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.loginSend');
+Route::prefix('wb-studio/admin')->middleware('auth:admins')->group(function(){
+    Route::get('/home', [\App\Http\Controllers\Admin\AdminController::class, 'home'])->name('admin.home');
 
- Route::get('dashboard', function(){ return 'アスリートでログイン完了'; });
-
+    //admin店舗管理回り
+    Route::get('/shopList', [\App\Http\Controllers\Admin\AdminController::class, 'shopList'])->name('admin.shopList');
+    Route::get('/shop/{shop_id}', [\App\Http\Controllers\Admin\AdminController::class, 'showShopForm'])->name('admin.showShopForm');
+    
+    //adminユーザー管理回り
+    Route::get('/customerList', [\App\Http\Controllers\Admin\AdminController::class, 'customerList'])->name('admin.customerList');
+    
+    //admin支払い管理回り
+    Route::get('/billList', [\App\Http\Controllers\Admin\AdminController::class, 'billList'])->name('admin.billList');
+    
+    //adminチケット管理回り
+    Route::get('/ticketList', [\App\Http\Controllers\Admin\AdminController::class, 'ticketList'])->name('admin.ticketList');
+    
+    //admin問い合わせ管理回り
+    Route::get('/contactList', [\App\Http\Controllers\Admin\AdminController::class, 'contactList'])->name('admin.contactList');
 });
 
