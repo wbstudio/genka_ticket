@@ -4,28 +4,24 @@ namespace App\Http\Controllers\Shops;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \App\Http\Controllers\CommonController;
 use \App\Models\Shop\Shop;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use App\Mail\ShopEmailRegistMail;
+use Illuminate\Support\Facades\Mail;
 class ShopController extends Controller
 {
     //
     public function index()
     {
         var_dump("LP");
-        // $commonController = new CommonController;
-        // $commonController->selectBrowser();
         return view('shop.index');
     }
 
     public function registEmail()
     {
-        // $commonController = new CommonController;
-        // $commonController->selectBrowser();
         return view('shop.registEmail');
     }
 
@@ -56,8 +52,6 @@ class ShopController extends Controller
             'inputs' => $inputs,
         ];
 
-        // $commonController = new CommonController;
-        // $commonController->selectBrowser();
         return view('shop.confirmRegistEmail', $dispData);
     }
 
@@ -93,7 +87,7 @@ class ShopController extends Controller
                     'delete_flag' => 0,
                 ]
             );
-
+            Mail::to($inputs['email'])->send(new ShopEmailRegistMail($inputs));
             //送信完了ページのviewを表示
             return view('shop.completeRegistEmail');
         }
@@ -101,8 +95,6 @@ class ShopController extends Controller
 
     public function showLoginForm()
     {
-        $commonController = new CommonController;
-        $commonController->selectBrowser();
         return view('shop.login');
     }
 
@@ -165,7 +157,7 @@ class ShopController extends Controller
         $shopId = session('shop_id');
         $mdShop = new Shop();
         $shopData = $mdShop->getShopInfoById($shopId);
-        
+
         if($shopData["name"] && $shopData["status"] == 1){
             return redirect()->route('shops.adminConfirm');
         }else if(isset($shopData["status"]) && $shopData["status"] == 2){
