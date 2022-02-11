@@ -9,7 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    public function getShopInfoWhenLogin($email)
+    public function getShopInfoByEmail($email)
     {
         $columnList = [
             "id",

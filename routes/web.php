@@ -101,12 +101,22 @@ Route::get('shops/registEmail', [\App\Http\Controllers\Shops\ShopController::cla
 Route::post('shops/confirmRegistEmail', [\App\Http\Controllers\Shops\ShopController::class, 'confirmRegistEmail'])->name('shops.confirmRegistEmail');
 Route::post('shops/completeRegistEmail', [\App\Http\Controllers\Shops\ShopController::class, 'completeRegistEmail'])->name('shops.completeRegistEmail');
 
+Route::get('shops/resetPassword', [\App\Http\Controllers\Shops\ShopController::class, 'showResetPasswordForm'])->name('shops.showResetPasswordForm');
+Route::post('shops/resetPassword', [\App\Http\Controllers\Shops\ShopController::class, 'sendResetPasswordMail'])->name('shops.sendResetPasswordMail');
+
+Route::get('shops/passwordReset/{mail_hash}/{shop_id}/{now_time}', [\App\Http\Controllers\Shops\ShopController::class, 'showPasswordResetForm'])->name('shops.showPasswordResetForm');
+Route::post('shops/passwordReset', [\App\Http\Controllers\Shops\ShopController::class, 'passwordReset'])->name('shops.passwordReset');
+
+
 //店舗管理画面Login周り
 Route::get('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, 'showLoginForm'])->name('shops.login');
 Route::post('shops/admin', [\App\Http\Controllers\Shops\ShopController::class, 'login']);
 
 //店舗管理画面Login後ページ
 Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
+    //logout
+    Route::get('/logout', [\App\Http\Controllers\Shops\ShopController::class, 'logout'])->name('shops.logout');
+
     //店舗基本情報を入れる前のroute
     Route::get('/registInfo', [\App\Http\Controllers\Shops\ShopController::class, 'showRegistInfoForm'])->name('shops.registInfo');
     Route::post('/registInfo/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'confirmRegistInfoForm'])->name('shops.confirmInfo');
