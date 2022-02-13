@@ -10,7 +10,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\ShopEmailRegistMail;
+use App\Mail\ShopEmailResetPasswordMail;
 use Illuminate\Support\Facades\Mail;
+
 class ShopController extends Controller
 {
     //
@@ -105,7 +107,7 @@ class ShopController extends Controller
 
         if (\Auth::guard($guard)->attempt($credentials)) {
             $mdShop = new Shop();
-            $shopData = $mdShop->getShopInfoWhenLogin($request->input('email'));
+            $shopData = $mdShop->getShopInfoByEmail($request->input('email'));
             $request->session()->put('shop_id', $shopData["id"]);
             return redirect('shops/admin/home');
         }
@@ -113,6 +115,86 @@ class ShopController extends Controller
         return back()->withErrors([
             'auth' => ['認証に失敗しました']
         ]);
+    }
+
+    public function logout() {
+
+        \Auth::logout();
+        return redirect()->route('shops.home');
+
+    }
+
+    public function showResetPasswordForm() {
+
+        \Auth::logout();
+        //送信完了ページのviewを表示
+        return view('shop.showResetPasswordForm');
+
+    }
+
+    public function sendResetPasswordMail(Request $request) {
+
+        $request->validate([
+            'email'  => [
+                'required',
+                'exists:shops'
+            ],
+        ]);
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoByEmail($request->input('email'));
+        $shopData["hash_email"] = Hash::make($shopData['email']);
+        $shopData["now"] = time();
+
+        Mail::to($shopData['email'])->send(new ShopEmailResetPasswordMail($shopData));
+
+        //送信完了ページのviewを表示
+        return view('shop.showResetPasswordForm');
+
+    }
+
+    public function showPasswordResetForm($mail_hash,$shop_id,$now_time) {
+
+        //30分以内に
+        if($now_time < time() - (30 * 60)){
+            return view('shop.errorMessageResetPassword');
+        }
+
+        $shopData["id"] = $shop_id;
+        $dispData = [
+            'shopData' => $shopData,
+        ];
+
+        //送信完了ページのviewを表示
+        return view('shop.showPasswordResetForm',$dispData);
+    }
+
+    public function passwordReset(Request $request) {
+
+        $request->validate([
+            'password'  => [
+                'required',
+                'min:8', // 最低8文字以上
+                'max:16', // 最高16文字まで
+                'regex:/^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]/' // 正規表現を使って、半角英数字混在
+            ],
+            'confirm_password' => [
+                'required', // 必須
+                'same:password', // user_passwordと値が同じか
+            ],
+            'shop_id' => [
+                'required', // 必須
+            ],
+        ]);
+
+
+        //再送信を防ぐためにトークンを再発行
+        $request->session()->regenerateToken();
+        $shop = Shop::where("id",$request->input('shop_id'))->first();
+        $shop->password = Hash::make($request->input('password'));
+        $shop->save();
+
+        //送信完了ページのviewを表示
+        return view('shop.passwordReset');
     }
 
     public function home()

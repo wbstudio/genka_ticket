@@ -11,11 +11,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
         <!--js-->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{ asset('js/admin/common.js') }}"></script>
         @yield('head')
     </head>
     <body>
         <header>
-            @include('shop.include.header')
+            @include('admin.include.header')
         </header>
         <main>
         <div id="content" class="content">
@@ -24,7 +25,7 @@
         </main>
         
         <footer>
-            @include('shop.include.footer')
+            @include('admin.include.footer')
         </footer>
     </body>
 </html>

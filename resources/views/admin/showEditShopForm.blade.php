@@ -9,7 +9,7 @@
 @section('content')
 <div>
 showRegistInfoForm
-<form action="{{ route('admin.shopInfoConfirm')}}" method="post">
+<form action="{{ route('admin.shopEditInfoConfirm')}}" method="post">
 @csrf
 <table>
     <thead>
@@ -93,6 +93,25 @@ showRegistInfoForm
             </th>
             <td>
                 <input type="text" name="yaxis" value="@if(!empty(old('yaxis'))){{old('yaxis')}}@else{{$adminShopData -> yaxis }}@endif">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                ステータス
+            </th>
+            <td>
+                <select name="status">
+                    <option value="2"  @if((!empty(old("status")) && old("status") == 2))  selected @elseif(empty(old("status")) && $adminShopData['status'] == 2) selected @endif>契約書捺印待ち</option>
+                    <option value="3"  @if((!empty(old("status")) && old("status") == 3))  selected @elseif(empty(old("status")) && $adminShopData['status'] == 3) selected @endif>契約中</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                削除
+            </th>
+            <td>
+                <input type="checkbox" value="1" name="delete_flag">
             </td>
         </tr>
     </tbody>
