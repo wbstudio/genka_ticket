@@ -143,6 +143,12 @@ Route::prefix('wb-studio/admin')->middleware('auth:admins')->group(function(){
     //admin店舗管理回り
     Route::get('/shopList', [\App\Http\Controllers\Admin\AdminController::class, 'shopList'])->name('admin.shopList');
     Route::get('/shop/{shop_id}', [\App\Http\Controllers\Admin\AdminController::class, 'showShopForm'])->name('admin.showShopForm');
+    Route::post('/shop/shopInfoConfirm', [\App\Http\Controllers\Admin\AdminController::class, 'shopInfoConfirm'])->name('admin.shopInfoConfirm');
+    Route::post('/shop/shopInfoComplete', [\App\Http\Controllers\Admin\AdminController::class, 'shopInfoComplete'])->name('admin.shopInfoComplete');
+    
+    Route::get('/shop/edit/{shop_id}', [\App\Http\Controllers\Admin\AdminController::class, 'showEditShopForm'])->name('admin.showEditShopForm');
+    Route::post('/shop/edit/shopInfoConfirm', [\App\Http\Controllers\Admin\AdminController::class, 'shopEditInfoConfirm'])->name('admin.shopEditInfoConfirm');
+    Route::post('/shop/edit/shopInfoComplete', [\App\Http\Controllers\Admin\AdminController::class, 'shopEditInfoComplete'])->name('admin.shopEditInfoComplete');
     
     //adminユーザー管理回り
     Route::get('/customerList', [\App\Http\Controllers\Admin\AdminController::class, 'customerList'])->name('admin.customerList');

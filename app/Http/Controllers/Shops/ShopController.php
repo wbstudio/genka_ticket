@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\ShopEmailRegistMail;
 use App\Mail\ShopEmailResetPasswordMail;
 use Illuminate\Support\Facades\Mail;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class ShopController extends Controller
 {

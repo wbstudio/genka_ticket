@@ -9,9 +9,15 @@
 @section('content')
 <div>
     @foreach($adminShopList as $shopData)
-        <a href="{{ route('admin.showShopForm', ['shop_id' => $shopData->id]) }}">
-            {{$shopData -> id}}<br>
-        </a>
+        @if($shopData -> status < 2)
+            <a href="{{ route('admin.showShopForm', ['shop_id' => $shopData->id]) }}">
+                {{$shopData -> id}}<br>
+            </a>
+        @else
+            <a href="{{ route('admin.showEditShopForm', ['shop_id' => $shopData->id]) }}">
+                {{$shopData -> id}}<br>
+            </a>
+        @endif
     @endforeach
 </div>
 @endsection
