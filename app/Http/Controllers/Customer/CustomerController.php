@@ -27,21 +27,6 @@ class CustomerController extends Controller
 
         $lineClass = new LineClass;
         return $lineClass->authorize(env('APP_URL').'/customer/linelink');
-
-        // $credentials = $request->only(['email', 'password']);
-        // $guard = "customers";
-
-        // if (\Auth::guard($guard)->attempt($credentials)) {
-
-        //     $mdCustomer = new Customer();
-        //     $customerData = $mdCustomer->getCustomerInfoWhenLogin($request->input('email'));
-        //     $request->session()->put('id', $customerData["id"]);
-        //     return redirect('customer/home');
-        // }
-
-        // return back()->withErrors([
-        //     'auth' => ['認証に失敗しました']
-        // ]);
     }
 
     /**
@@ -92,7 +77,7 @@ class CustomerController extends Controller
                 // LINEユーザー情報をセッションに保存
                 session(['line.user' => $lineUserDetail]);
 
-                return redirect('customer.regist');
+                return redirect('customer/regist');
             }
 
             // セッションに保存
