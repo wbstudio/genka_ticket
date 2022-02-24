@@ -8,6 +8,6 @@
 
 @section('content')
 <div>
-
+<a href="{{ route('shops.offer_menu') }}">メニュー</a>
 </div>
 @endsection

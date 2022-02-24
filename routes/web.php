@@ -78,7 +78,7 @@ Route::prefix('customer')->middleware('auth:customers')->group(function(){
 
 });
 
-//Ajax
+//Ajax--customer
 Route::get('/ajax/shop/{shop_id}', [\App\Http\Controllers\Ajax\ShopController::class, 'selectShopPushMaekerId']);
 Route::get('/ajax/ticket_use_insert/shop/{shop_id}/service/{service_id}/ticket/{ticket_count}/customer/{customer_id}', [\App\Http\Controllers\Ajax\TicketController::class, 'insertUseTicketData']);
 
@@ -125,10 +125,16 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
 
     //店舗基本情報を入れた後のroute
     Route::get('/home', [\App\Http\Controllers\Shops\ShopController::class, 'home'])->name('shops.home');
+
     Route::get('/setting', [\App\Http\Controllers\Shops\ShopController::class, 'showSettingForm'])->name('shops.setting');
-    Route::get('/offerMenu', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuForm'])->name('shops.offer_menu');
+
+    Route::get('/offerMenuList', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuList'])->name('shops.offer_menu');
+    Route::get('/offerMenu/regist', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistForm'])->name('shops.showOfferMenuRegistForm');
+
 });
 
+//Ajax--shop
+Route::get('/ajax/shop/checkMakeNewMenu/{shop_id}', [\App\Http\Controllers\Shops\Ajax\ShopController::class, 'checkShopMenu']);
 
 /*
 |--------------------------------------------------------------------------

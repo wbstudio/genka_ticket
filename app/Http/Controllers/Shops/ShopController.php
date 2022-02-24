@@ -231,6 +231,7 @@ class ShopController extends Controller
 
     }
 
+    //登録系
     public function showRegistInfoForm()
     {
         $page_title = "";
@@ -358,6 +359,49 @@ class ShopController extends Controller
         ];
 
         return view('shop.showAdminConfirmMessage', $dispData);
+
+    }
+
+    //menu系
+    public function showOfferMenuList()
+    {
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $shopServiceList = $mdShop->getShopMenuInfoById($shopId);
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'shopServiceList' => $shopServiceList,
+        ];
+
+        return view('shop.showOfferMenuList', $dispData);
+
+    }
+
+    //menu系
+    public function showOfferMenuRegistForm()
+    {
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showOfferMenuList', $dispData);
 
     }
 
