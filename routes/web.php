@@ -130,6 +130,11 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
 
     Route::get('/offerMenuList', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuList'])->name('shops.offer_menu');
     Route::get('/offerMenu/regist', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistForm'])->name('shops.showOfferMenuRegistForm');
+    Route::post('/offerMenu/regist/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistConfirm'])->name('shops.showOfferMenuRegistConfirm');
+    Route::post('/offerMenu/regist/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistComplete'])->name('shops.showOfferMenuRegistComplete');
+    Route::get('/offerMenu/edit/{service_id}', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditForm'])->name('shops.showOfferMenuEditForm');
+    Route::post('/offerMenu/edit/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditConfirm'])->name('shops.showOfferMenuEditConfirm');
+    Route::post('/offerMenu/edit/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditComplete'])->name('shops.showOfferMenuEditComplete');
 
 });
 

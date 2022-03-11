@@ -7,7 +7,5 @@
 @endsection
 
 @section('content')
-passwordReset完了しました
-
-<a href="{{ route('shops.home') }}">Login</a>
+aaaaaaaaaaaaaaaa
 @endsection

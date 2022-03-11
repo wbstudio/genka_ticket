@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('shops.confirmRegistEmail') }}" method="post">
+<form action="{{ route('shops.showOfferMenuRegistConfirm') }}" method="post">
 @csrf
 <table>
     <thead>
@@ -23,35 +23,33 @@
     <tbody>
         <tr>
             <th>
-                アドレス
+                名前
             </th>
             <td>
-                <input type="text" name="email" value="{{ old('email') }}">
+                <input type="text" name="name" value="{{ old('name')  }}">
             </td>
         </tr>
         <tr>
             <th>
-                パスワード<span class="asterisk">＊</span>
+                詳細
             </th>
             <td>
-                <input type="password" name="password" value="">
+                <textarea name="detail">{{old('detail')}}</textarea>
             </td>
         </tr>
         <tr>
             <th>
-                確認用<span class="asterisk">＊</span>
+                チケット枚数
             </th>
             <td>
-                <input type="password" name="confirm_password" value="">
+                <input type="text" name="ticket" value="2" readonly="readonly">
             </td>
         </tr>
     </tbody>
 </table>
-@foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
 <button type="submit" name="action" value="submit">
-    確認画面へ
+    登録する
 </button>
+<input type="hidden" name="shop_id" value="{{ $shopData -> id }}">
 </form>
 @endsection

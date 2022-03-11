@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('shops.confirmRegistEmail') }}" method="post">
+<form action="{{ route('shops.showOfferMenuEditConfirm') }}" method="post">
 @csrf
 <table>
     <thead>
@@ -23,35 +23,34 @@
     <tbody>
         <tr>
             <th>
-                アドレス
+                名前
             </th>
             <td>
-                <input type="text" name="email" value="{{ old('email') }}">
+                <input type="text" name="name" value="@if(!empty(old('name'))){{old('name')}}@else{{$serviceData -> name }}@endif">
             </td>
         </tr>
         <tr>
             <th>
-                パスワード<span class="asterisk">＊</span>
+                詳細
             </th>
             <td>
-                <input type="password" name="password" value="">
+                <textarea name="detail">@if(!empty(old('detail'))){{old('detail')}}@else{{$serviceData -> detail }}@endif</textarea>
             </td>
         </tr>
         <tr>
             <th>
-                確認用<span class="asterisk">＊</span>
+                チケット枚数
             </th>
             <td>
-                <input type="password" name="confirm_password" value="">
+                <input type="text" name="ticket" value="2" readonly="readonly">
             </td>
         </tr>
     </tbody>
 </table>
-@foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-<button type="submit" name="action" value="submit">
-    確認画面へ
+<button type="submit" name="action" value="submit" @if($disable_flag == 1) disabled @endif>
+    登録する
 </button>
+<input type="hidden" name="shop_id" value="{{ $shopData -> id }}">
+<input type="hidden" name="service_id" value="{{ $serviceData -> service_id }}">
 </form>
 @endsection

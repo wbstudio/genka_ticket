@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shops;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\Shop\Shop;
+use \App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -401,7 +402,167 @@ class ShopController extends Controller
             // 'shopTicketData' => $shopTicketData,
         ];
 
-        return view('shop.showOfferMenuList', $dispData);
+        return view('shop.showOfferMenuRegistForm', $dispData);
+
+    }
+
+    public function showOfferMenuRegistConfirm(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'shop_id' => 'required',
+        ]);
+
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $inputs = $request->all();
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'inputs' => $inputs,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showOfferMenuRegistConfirm', $dispData);
+
+    }
+
+    public function showOfferMenuRegistComplete(Request $request)
+    {
+
+        $inputs = $request->all();
+
+        //フォームから受け取ったactionの値を取得
+        $action = $request->input('action');
+        
+        //フォームから受け取ったactionを除いたinputの値を取得
+        $inputs = $request->except('action');
+        
+        //actionの値で分岐
+        if($action !== 'submit'){
+            return redirect()
+                ->route('shops.showOfferMenuRegistForm')
+                ->withInput($inputs);
+        } else {
+            //再送信を防ぐためにトークンを再発行
+            $request->session()->regenerateToken();
+            $service = DB::table('services');
+            $data = $service
+            ->insert(
+                [
+                    'shop_id' => $inputs['shop_id'],
+                    'ticket' => $inputs['ticket'],
+                    'detail' => $inputs['detail'],
+                    'name' => $inputs['name'],
+                    'delete_flag' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+
+            //送信完了ページのviewを表示
+            return view('shop.showOfferMenuRegistComplete');
+        }
+        
+
+    }
+
+
+    public function showOfferMenuEditForm($service_id)
+    {
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $mdService = new Service();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $serviceData = $mdService->getServiceInfoById($shopId,$service_id);
+
+        $disable_flag = 0;
+        if(strtotime($serviceData->updated_at) > time() - (22 * 60 * 60)){
+            $disable_flag = 1;
+        }
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'serviceData' => $serviceData,
+            'disable_flag' => $disable_flag,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showOfferMenuEditForm', $dispData);
+
+    }
+
+    public function showOfferMenuEditConfirm(Request $request)
+    {
+
+        $request->validate([
+            'service_id' => 'required',
+            'name' => 'required',
+            'detail' => 'required',
+            'shop_id' => 'required',
+        ]);
+
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $inputs = $request->all();
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'inputs' => $inputs,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showOfferMenuEditConfirm', $dispData);
+
+    }
+
+    public function showOfferMenuEditComplete(Request $request)
+    {
+
+        $inputs = $request->all();
+
+        //フォームから受け取ったactionの値を取得
+        $action = $request->input('action');
+        
+        //フォームから受け取ったactionを除いたinputの値を取得
+        $inputs = $request->except('action');
+        
+        //actionの値で分岐
+        if($action !== 'submit'){
+            return redirect()
+                ->route('shops.showOfferMenuRegistForm')
+                ->withInput($inputs);
+        } else {
+            //再送信を防ぐためにトークンを再発行
+            $request->session()->regenerateToken();
+            $service = Service::where("id",$request->input('service_id'))->first();
+            $service->name = $request->input('name');
+            $service->detail = $request->input('detail');
+            $service->updated_at = now();
+            $service->save();
+
+            //送信完了ページのviewを表示
+            return view('shop.showOfferMenuEditComplete');
+        }
+        
 
     }
 

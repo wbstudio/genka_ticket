@@ -14,7 +14,9 @@
     <div>
     @if(!empty($shopServiceList))
         @foreach($shopServiceList as $serviceData)
-            {{$serviceData -> service_id}}<br>
+            <a href="{{ route('shops.showOfferMenuEditForm', ['service_id' => $serviceData -> service_id]) }}">
+                {{$serviceData -> service_id}}<br>
+            </a>
         @endforeach
     @endif
     </div>
