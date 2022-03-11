@@ -159,4 +159,26 @@
             }
         }
     }
+
+    .contact_area{
+        &:not(.title){
+            font-size: 18px;
+        }
+
+        .button_area{
+            text-align: center;
+            a{
+                font-size: 14px;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color:#373737;
+
+                &:hover{
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
 }

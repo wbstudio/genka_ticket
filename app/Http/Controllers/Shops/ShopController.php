@@ -143,13 +143,13 @@ class ShopController extends Controller
         ]);
         $mdShop = new Shop();
         $shopData = $mdShop->getShopInfoByEmail($request->input('email'));
-        $shopData["hash_email"] = Hash::make($shopData['email']);
+        $shopData["hash_email"] = str_replace("/","",Hash::make($shopData['email']));
         $shopData["now"] = time();
 
         Mail::to($shopData['email'])->send(new ShopEmailResetPasswordMail($shopData));
 
         //送信完了ページのviewを表示
-        return view('shop.showResetPasswordForm');
+        return view('shop.completeResetPassword');
 
     }
 

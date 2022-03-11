@@ -1,24 +1,56 @@
 <html>
 <head>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/shop/login.css') }}">
 </head>
 <body>
-    <form method="POST" action="admin">
-        @csrf
-        <div class="p-3">
-            @error('auth')
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
-                &#x26A0; {{ $message }}
-            </div>
-            @enderror
-            <label class="block">メールアドレス</label>
-            <input class="border rounded mb-3 px-2 py-1" type="text" name="email">
-            <label class="block">パスワード</label>
-            <input class="border rounded mb-3 px-2 py-1" type="password" name="password">
-            <br>
-            <button class="bg-blue-500 text-white rounded px-3 py-2" type="submit">ログイン</button>
+    <div id="member_outside">
+
+        <div class="bar">
+            <span>店舗管理ログイン画面</span>
         </div>
-    </form>
-    <a href="{{ route('shops.showResetPasswordForm')}}">こちら</a>
+
+        <div class="form_area">
+            <form method="POST" action="admin">
+                @csrf
+                <div class="p-3">
+                    @error('auth')
+                    <div class="error_message">
+                        &#x26A0; {{ $message }}
+                    </div>
+                    @enderror
+                    <table>
+                        <colgroup> 
+                            <col style='width: 30%;'>
+                            <col style='width: 70%;'>
+                        </colgroup>
+
+                        <tr>
+                            <td>
+                                メールアドレス    
+                            </td>
+                            <td>
+                                <input class="" type="text" name="email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                パスワード    
+                            </td>
+                            <td>
+                                <input class="" type="password" name="password">        
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="button_area">
+                        <button class="" type="submit">ログイン</button>
+                    </div>
+                </div>
+            </form>
+            <div class="password_reset">
+                パスワードを忘れた方は
+                <a href="{{ route('shops.showResetPasswordForm')}}">こちら</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

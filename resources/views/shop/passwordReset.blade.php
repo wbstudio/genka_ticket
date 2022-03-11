@@ -1,13 +1,22 @@
-@extends('shop.include.layout')
-@section('title', '')
-@section('head')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('css/shop/home.css') }}">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-@endsection
+<html>
+<head>
+<link rel="stylesheet" href="{{ asset('css/shop/login.css') }}">
+</head>
+<body>
+    <div id="member_outside">
+        <div class="bar">
+            <span>パスワードリセット完了</span>
+        </div>
 
-@section('content')
-passwordReset完了しました
+        <div class="form_area">
+            <div class="memo">
+                パスワードの再設定が完了しました。
+            </div>
+            <div class="button_area">
+                <a href="{{ route('shops.login')}}">ログイン画面へ</a>
+            </div>
 
-<a href="{{ route('shops.home') }}">Login</a>
-@endsection
+        </div>
+    </div>
+</body>
+</html>

@@ -107,9 +107,10 @@ main #content .inner_content h2.title span {
 footer {
   width: 100%;
   /* 幅いっぱいを指定 */
-  background: #7a7878;
+  background: #efede4;
   /* 背景色にグレーを指定 */
-  border-top: 1px solid #373737;
+  border-top: 1px solid #efede4;
+  box-shadow: 2px 0px 4px #373737;
   color: #FFF;
 }
 

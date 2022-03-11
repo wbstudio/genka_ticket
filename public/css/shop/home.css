@@ -115,4 +115,21 @@
 }
 #content .ticket_list .button_area a:hover {
   opacity: 0.5;
+}
+#content .contact_area:not(.title) {
+  font-size: 18px;
+}
+#content .contact_area .button_area {
+  text-align: center;
+}
+#content .contact_area .button_area a {
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #373737;
+}
+#content .contact_area .button_area a:hover {
+  opacity: 0.5;
 }/*# sourceMappingURL=home.css.map */
