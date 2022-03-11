@@ -18,48 +18,48 @@ class MultiAuthTableSeeder extends Seeder
     public function run()
     {
         //
-        $init_customers = [
-            [
-                'name' => 'テスト太郎',
-                'email' => 'test@test.com',
-                'password' => 'testpass',
-                'ticket' => 0,
-            ],
+        // $init_customers = [
+        //     [
+        //         'name' => 'テスト太郎',
+        //         'email' => 'test@test.com',
+        //         'password' => 'testpass',
+        //         'ticket' => 0,
+        //     ],
 
-            // ここに追加できます
-        ];
+        //     // ここに追加できます
+        // ];
 
-        foreach($init_customers as $init_customer) {
+        // foreach($init_customers as $init_customer) {
 
-            $customer = new Customer();
-            $customer->name = $init_customer['name'];
-            $customer->email = $init_customer['email'];
-            $customer->password = Hash::make($init_customer['password']);
-            $customer->ticket = $init_customer['ticket'];
-            $customer->save();
+        //     $customer = new Customer();
+        //     $customer->name = $init_customer['name'];
+        //     $customer->email = $init_customer['email'];
+        //     $customer->password = Hash::make($init_customer['password']);
+        //     $customer->ticket = $init_customer['ticket'];
+        //     $customer->save();
 
-        }
+        // }
 
-        $init_shops = [
-            [
-                'name' => 'テスト店舗',
-                'email' => 'shop@test.com',
-                'password' => 'shoppass',
-                'kind' => 0,
-            ],
+        // $init_shops = [
+        //     [
+        //         'name' => 'テスト店舗',
+        //         'email' => 'shop@test.com',
+        //         'password' => 'shoppass',
+        //         'kind' => 0,
+        //     ],
 
-            // ここに追加できます
-        ];
+        //     // ここに追加できます
+        // ];
 
-        foreach($init_shops as $init_shop) {
+        // foreach($init_shops as $init_shop) {
 
-            $shop = new Shop();
-            $shop->name = $init_shop['name'];
-            $shop->email = $init_shop['email'];
-            $shop->password = Hash::make($init_shop['password']);
-            $shop->kind = $init_shop['kind'];
-            $shop->save();
-        }
+        //     $shop = new Shop();
+        //     $shop->name = $init_shop['name'];
+        //     $shop->email = $init_shop['email'];
+        //     $shop->password = Hash::make($init_shop['password']);
+        //     $shop->kind = $init_shop['kind'];
+        //     $shop->save();
+        // }
 
         $init_admins = [
             [
