@@ -135,6 +135,7 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
     Route::get('/offerMenu/edit/{service_id}', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditForm'])->name('shops.showOfferMenuEditForm');
     Route::post('/offerMenu/edit/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditConfirm'])->name('shops.showOfferMenuEditConfirm');
     Route::post('/offerMenu/edit/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditComplete'])->name('shops.showOfferMenuEditComplete');
+    Route::get('/deleteMenu/{service_id}/{shop_id}', [\App\Http\Controllers\Shops\ShopController::class, 'deleteMenu'])->name('shops.deleteMenu');
 
 });
 

@@ -59,7 +59,7 @@ main{
 
                 &:hover{
                     color:#FFF;
-                    background: #7a7878;
+                    background: #9f9d94;
                 }
             }
         }
@@ -74,13 +74,13 @@ main{
             max-width: 800px;
             padding: 75px 50px;
             margin: 0 auto;
-            min-height: 100%;
+            min-height: 90%;
 
             h2.title {
                 position: relative;
                 overflow: hidden;
                 padding: 0.1rem 2rem 0.1rem 50px;
-                border: 2px solid #7a7878;
+                border: 2px solid #9f9d94;
                 margin-top: 0;
                 font-size: 18px;
                 font-weight: normal;
@@ -94,7 +94,7 @@ main{
                     content: '';
                     -webkit-transform: rotate(25deg);
                     transform: rotate(25deg);
-                    background: #7a7878;
+                    background: #9f9d94;
                 }
             
                 span {
