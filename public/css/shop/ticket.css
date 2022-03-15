@@ -1,0 +1,45 @@
+#content .month_select table {
+  width: 100%;
+  margin: 30px 0;
+}
+#content .month_select table td {
+  text-align: center;
+}
+#content .month_select table td a {
+  text-decoration: underline;
+}
+#content .table_area table {
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: 40px 0 5px;
+}
+#content .table_area table thead td {
+  text-align: center;
+  padding: 5px;
+  background: #efede4;
+}
+#content .table_area table thead td:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+#content .table_area table tbody td {
+  padding: 5px;
+  height: 35px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+#content .table_area table tbody td:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+#content #pagenator {
+  text-align: center;
+  margin: 30px 0;
+}
+#content #pagenator a, #content #pagenator span {
+  padding: 5px 10px;
+}
+#content #pagenator a {
+  text-decoration: underline;
+}
+#content #pagenator span {
+  background: #efede4;
+}/*# sourceMappingURL=ticket.css.map */

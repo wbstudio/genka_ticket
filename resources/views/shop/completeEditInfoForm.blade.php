@@ -11,11 +11,11 @@
 
     <h2 class="title">原価ticket--店舗情報登録完了</h2>
     <div class="regist_compete">
-        店舗情報登録、誠にありがとうございます。<br>
-        原価ticket運営の方で内容確認をし、<br>
-        メールにて契約書などの連絡を差し上げますので、<br>
-        少々お待ちください。<br>
-        引き続きよろしくお願いします。<br>
+        店舗情報編集が完了しました。<br>
+        引き続き「原価ticket」をよろしくお願いします。<br>
+        <div class="button_area">
+            <a href="{{ route('shops.home')}}">会員HOMEへ戻る</a>
+        </div>
     </div>
 
 </div>

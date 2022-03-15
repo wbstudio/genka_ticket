@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\ShopEmailRegistMail;
 use App\Mail\ShopEmailResetPasswordMail;
 use Illuminate\Support\Facades\Mail;
+use \App\Http\Controllers\CommonController;
 
 class ShopController extends Controller
 {
@@ -219,13 +220,13 @@ class ShopController extends Controller
         }
         // $shopTicketData = $mdShop->getShopTicketInfoById($shopId);
         //toDo--test用にチケット利用のあるshop_idに設定
-        $shopTicketData = $mdShop->getShopTicketInfoById(5,$startTime,$endTime);
+        // $shopTicketData = $mdShop->getShopTicketInfoById(5,$startTime,$endTime);
 
         $dispData = [
             'pageTitle' => $page_title,
             'pageType' => $page_type,
             'shopData' => $shopData,
-            'shopTicketData' => $shopTicketData,
+            // 'shopTicketData' => $shopTicketData,
         ];
 
         return view('shop.home', $dispData);
@@ -279,6 +280,8 @@ class ShopController extends Controller
         $mdShop = new Shop();
         $shopData = $mdShop->getShopInfoById($shopId);
         $inputs = $request->all();
+        $inputs["kind_str"] = config('shop.kind')[$request->kind];
+        $inputs["category_str"] = config('shop.category')[$request->category];
         
         $dispData = [
             'pageTitle' => $page_title,
@@ -287,9 +290,6 @@ class ShopController extends Controller
             'inputs' => $inputs,
             // 'shopTicketData' => $shopTicketData,
         ];
-
-        // var_dump($request);
-        // exit();
 
         return view('shop.confirmRegistInfoForm', $dispData);
 
@@ -361,6 +361,90 @@ class ShopController extends Controller
 
         return view('shop.showAdminConfirmMessage', $dispData);
 
+    }
+
+    public function showEditInfoForm()
+    {
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showEditInfoForm', $dispData);
+
+    }
+
+    public function confirmEditInfoForm(Request $request)
+    {
+
+        //
+        $request->validate([
+            'business_hour' => 'required',
+        ]);
+
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $inputs = $request->all();
+        $inputs["kind_str"] = config('shop.kind')[$request->kind];
+        $inputs["category_str"] = config('shop.category')[$request->category];
+        
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'inputs' => $inputs,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.confirmEditInfoForm', $dispData);
+
+    }
+
+
+    public function completeEditInfoForm(Request $request)
+    {
+
+        // $page_title = "";
+        // $page_type = "";
+
+        // $mdShop = new Shop();
+        $inputs = $request->all();
+
+        //フォームから受け取ったactionの値を取得
+        $action = $request->input('action');
+        
+        //フォームから受け取ったactionを除いたinputの値を取得
+        $inputs = $request->except('action');
+        
+        //actionの値で分岐
+        if($action !== 'submit'){
+            return redirect()
+                ->route('shops.showEditInfoForm')
+                ->withInput($inputs);
+        } else {
+            //再送信を防ぐためにトークンを再発行
+            $request->session()->regenerateToken();
+            $shop = Shop::where("id",$request->input('id'))->first();
+            $shop->business_hour = $request->input('business_hour');
+            $shop->save();
+
+            //送信完了ページのviewを表示
+            return view('shop.completeEditInfoForm');
+        }
+        
     }
 
     //menu系
@@ -548,7 +632,7 @@ class ShopController extends Controller
         //actionの値で分岐
         if($action !== 'submit'){
             return redirect()
-                ->route('shops.showOfferMenuRegistForm')
+                ->route('shops.showOfferMenuEditForm',['service_id' => $request->input('service_id')])
                 ->withInput($inputs);
         } else {
             //再送信を防ぐためにトークンを再発行
@@ -563,6 +647,80 @@ class ShopController extends Controller
             return view('shop.showOfferMenuEditComplete');
         }
         
+    }
+
+    
+
+    public function deleteMenu($service_id,$shop_id)
+    {
+
+        new Service();
+
+        $whereList = [
+            ["id","=",$service_id],
+            ["shop_id","=",$shop_id],
+        ];
+
+        $service = Service::where($whereList)->first();
+        $service->delete_flag = 1;
+        $service->save();
+
+            //送信完了ページのviewを表示
+        return redirect()->route('shops.offer_menu');
+
+
+
+    }
+
+
+    public function ticketList(Request $request)
+    {
+        $page_title = "";
+        $page_type = "";
+        $timestamp = time();
+        $startTime = date("Y-m-01 00:00:00", $timestamp);
+        $nowMonth = date("Y-m", $timestamp);
+        $month = date("Y-m", $timestamp);
+        $endTime = date("Y-m-d H:i:s", $timestamp);
+        $currentPage = 1;
+        $perPage = 20;
+
+        if($request->input('month')){
+            $month = $request->input('month');
+            $monthData["current"] = $month;
+            $startTime = $month.'-01 00:00:00'; 
+            $endTime = date('Y-m-d', strtotime('last day of ' . $month)).' 23:59:59';
+        }
+        if($request->input('page')){
+            $currentPage = $request->input('page');
+        }
+
+        if($nowMonth > $month){
+            $monthData["forward"] = date('Y-m', strtotime($month.' +1 month'));
+        }
+        $monthData["back"] = date('Y-m', strtotime($month.' -1 month'));
+        $monthData["current"] = $month;
+        $monthData["current_str"] = substr($month, 0, 4).'年'.substr($month, 5, 2).'月';
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $shopTicketDataForPager = $mdShop->getShopTicketInfoById($shopId,$startTime,$endTime,$currentPage - 1,$perPage);
+        $commonController = new CommonController;
+        $pagenator = $commonController->purepagenator($shopTicketDataForPager["count"],$currentPage,$perPage);
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'shopTicketList' => $shopTicketDataForPager["dispData"],
+            'pagenator' => $pagenator -> link,
+            'monthData' => $monthData,
+            'page' => $currentPage,
+        ];
+
+
+        return view('shop.showTicketList', $dispData);
 
     }
 

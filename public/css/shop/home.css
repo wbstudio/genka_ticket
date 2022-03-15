@@ -37,6 +37,7 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   color: #373737;
+  background: #efede4;
 }
 #content .menu_list .button_area a:hover {
   opacity: 0.5;
@@ -73,6 +74,7 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   color: #373737;
+  background: #efede4;
 }
 #content .shop_info .button_area a:hover {
   opacity: 0.5;
@@ -112,6 +114,7 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   color: #373737;
+  background: #efede4;
 }
 #content .ticket_list .button_area a:hover {
   opacity: 0.5;
@@ -129,6 +132,7 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   color: #373737;
+  background: #efede4;
 }
 #content .contact_area .button_area a:hover {
   opacity: 0.5;

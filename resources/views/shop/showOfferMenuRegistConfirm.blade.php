@@ -2,60 +2,62 @@
 @section('title', '')
 @section('head')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('css/shop/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/shop/menu.css') }}">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 @endsection
 
 @section('content')
-<form action="{{ route('shops.showOfferMenuRegistComplete') }}" method="post">
-@csrf
-<table>
-    <thead>
-        <tr>
-            <th>
+<div class="inner_content">
 
-            </th>
-            <td>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>
-                名前
-            </th>
-            <td>
-                {{ $inputs ['name']  }}
-                <input type="hidden" name="name" value="{{ $inputs ['name']  }}">
-            </td>
-        </tr>
-        <tr>
-            <th>
-                詳細
-            </th>
-            <td>
-                {!! nl2br(e($inputs ['detail'])) !!}
-                <input type="hidden" name="detail" value='{{$inputs ["detail"]}}'>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                チケット枚数
-            </th>
-            <td>
-                2枚
-                <input type="hidden" name="ticket" value="2" readonly="readonly">
-            </td>
-        </tr>
-    </tbody>
-</table>
-<button type="submit" name="action" value="submit">
-    登録する
-</button>
-<button type="submit" name="back" value="submit">
-    戻る
-</button>
-<input type="hidden" name="shop_id" value="{{ $shopData -> id }}">
-</form>
+    <h2 class="title">原価ticket用メニュー登録確認画面</h2>
+    <div class="regist_confirm">
+        <form action="{{ route('shops.showOfferMenuRegistComplete') }}" method="post">
+        @csrf
+        <table>
+            <colgroup>
+                <col style="width:20%;">
+                <col style="width:80%;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>
+                        名前
+                    </th>
+                    <td>
+                        {{ $inputs ['name']  }}
+                        <input type="hidden" name="name" value="{{ $inputs ['name']  }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        詳細
+                    </th>
+                    <td>
+                        {!! nl2br(e($inputs ['detail'])) !!}
+                        <input type="hidden" name="detail" value='{{$inputs ["detail"]}}'>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        チケット枚数
+                    </th>
+                    <td>
+                        2枚
+                        <input type="hidden" name="ticket" value="2" readonly="readonly">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button_area">
+            <button type="submit" name="action" value="submit">
+                登録する
+            </button>
+            <button type="submit" name="back" value="submit">
+                戻る
+            </button>
+        </div>
+        <input type="hidden" name="shop_id" value="{{ $shopData -> id }}">
+        </form>
+    </div>
+</div>
 @endsection

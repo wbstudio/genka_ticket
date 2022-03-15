@@ -94,8 +94,9 @@ class Shop extends Model
         return $aList;
     }
 
-    public function getShopTicketInfoById($id,$startTime,$endTime)
+    public function getShopTicketInfoById($id,$startTime,$endTime,$currentPage,$perPage)
     {
+        $offset = $currentPage * $perPage;
 
         $columnList = [
             "id",
@@ -118,9 +119,19 @@ class Shop extends Model
 
         $dispData =$this::from("tickets")
                     ->where($whereList)
+                    ->orderBy('created_at', 'desc')
+                    ->offset($offset)
+                    ->limit($perPage)
                     ->get($columnList);
 
-        $aList = $dispData;
+        $aList["dispData"] = $dispData;
+
+
+        $count  =$this::from("tickets")
+                    ->where($whereList)
+                    ->count();
+
+        $aList["count"] = $count;
 
         return $aList;
     }

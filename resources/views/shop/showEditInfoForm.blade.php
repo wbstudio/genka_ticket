@@ -18,7 +18,7 @@
             @endforeach
         </ul>
         @endif
-        <form action="{{ route('shops.confirmInfo') }}" method="post">
+        <form action="{{ route('shops.confirmEditInfo') }}" method="post">
         @csrf
         <table>
             <colgroup>
@@ -31,7 +31,7 @@
                         店舗名<span class="asterisk">＊</span>
                     </th>
                     <td>
-                        <input type="text" name="name" value="{{ old('name') }}">
+                        <input type="text" name="name"  readonly value="{{$shopData -> name}}">
                     </td>
                 </tr>
                 <tr>
@@ -48,9 +48,9 @@
                     </th>
                     <td>
                         <select class="kind" name="kind">
-                            <option value="">種別</option>
+                            <option value="" disabled>種別</option>
                             @foreach(Config::get('shop.kind') as $key => $kind)
-                                <option value="{{$key}}" @if(old('kind') != NULL && old('kind') == $key) selected @endif>{{$kind}}</option>
+                                <option value="{{$key}}" @if($shopData -> kind == $key) selected @else disabled @endif>{{$kind}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -61,9 +61,9 @@
                     </th>
                     <td>
                         <select class="category" name="category">
-                            <option value="">カテゴリー</option>
+                            <option value="" disabled>カテゴリー</option>
                             @foreach(Config::get('shop.category') as $key => $category)
-                                <option value="{{$key}}" @if(old('category') != NULL && old('category') == $key) selected @endif>{{$category}}</option>
+                                <option value="{{$key}}" @if($shopData -> category == $key) selected @else disabled @endif>{{$category}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -73,7 +73,7 @@
                         住所<span class="asterisk">＊</span>
                     </th>
                     <td>
-                        <input type="text" name="adress" value="{{ old('adress') }}">
+                        <input type="text" name="adress" readonly value="{{$shopData -> adress}}">
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +81,7 @@
                         電話番号<span class="asterisk">＊</span>
                     </th>
                     <td>
-                        <input type="text" name="phone" value="{{ old('phone') }}">
+                        <input type="text" name="phone" readonly value="{{$shopData -> phone}}">
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
                         営業時間<span class="asterisk">＊</span>
                     </th>
                     <td>
-                    <input type="text" name="business_hour" value="{{ old('business_hour') }}">
+                    <input type="text" name="business_hour" value="@if(!empty(old('business_hour'))) {{old('business_hour')}} @else {{$shopData -> business_hour}} @endif">
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@
                         xAxis
                     </th>
                     <td>
-                        <input type="text" name="xaxis" value="{{ old('xaxis') }}">
+                        <input type="text" name="xaxis" readonly value="{{$shopData -> xaxis}}">
                     </td>
                 </tr>
                 <tr>
@@ -105,7 +105,7 @@
                         yAxis
                     </th>
                     <td>
-                        <input type="text" name="yaxis" value="{{ old('yaxis') }}">
+                        <input type="text" name="yaxis" readonly value="{{$shopData -> yaxis}}">
                     </td>
                 </tr>
             </tbody>

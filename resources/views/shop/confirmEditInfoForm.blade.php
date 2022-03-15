@@ -11,7 +11,7 @@
 
     <h2 class="title">原価ticket--店舗情報登録確認画面</h2>
     <div class="regist_confirm">
-        <form action="{{ route('shops.completeInfo') }}" method="post">
+        <form action="{{ route('shops.completeEditInfo') }}" method="post">
         @csrf
         <table>
             <colgroup>

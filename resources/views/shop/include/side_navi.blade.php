@@ -11,17 +11,17 @@
             HOME
         </li>
     </a>
-    <a href="">
+    <a href="{{ route('shops.offer_menu') }}">
         <li>
             原価ticket-メニュー編集
         </li>
     </a>
-    <a href="">
+    <a href="{{ route('shops.showEditInfoForm') }}">
         <li>
             店舗情報編集
         </li>
     </a>
-    <a href="">
+    <a href="{{ route('shops.showTicketList') }}">
         <li>
             ticket利用履歴
         </li>

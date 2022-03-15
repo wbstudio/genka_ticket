@@ -117,17 +117,20 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
     //logout
     Route::get('/logout', [\App\Http\Controllers\Shops\ShopController::class, 'logout'])->name('shops.logout');
 
-    //店舗基本情報を入れる前のroute
+    //shop---Setting
     Route::get('/registInfo', [\App\Http\Controllers\Shops\ShopController::class, 'showRegistInfoForm'])->name('shops.registInfo');
     Route::post('/registInfo/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'confirmRegistInfoForm'])->name('shops.confirmInfo');
     Route::post('/registInfo/complete', [\App\Http\Controllers\Shops\ShopController::class, 'completeRegistInfoForm'])->name('shops.completeInfo');
     Route::get('/adminConfirm', [\App\Http\Controllers\Shops\ShopController::class, 'showAdminConfirmMessage'])->name('shops.adminConfirm');
+    Route::get('/editInfo', [\App\Http\Controllers\Shops\ShopController::class, 'showEditInfoForm'])->name('shops.showEditInfoForm');
+    Route::post('/editInfo/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'confirmEditInfoForm'])->name('shops.confirmEditInfo');
+    Route::post('/editInfo/complete', [\App\Http\Controllers\Shops\ShopController::class, 'completeEditInfoForm'])->name('shops.completeEditInfo');
 
     //店舗基本情報を入れた後のroute
     Route::get('/home', [\App\Http\Controllers\Shops\ShopController::class, 'home'])->name('shops.home');
 
-    Route::get('/setting', [\App\Http\Controllers\Shops\ShopController::class, 'showSettingForm'])->name('shops.setting');
 
+    //shop---Menu
     Route::get('/offerMenuList', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuList'])->name('shops.offer_menu');
     Route::get('/offerMenu/regist', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistForm'])->name('shops.showOfferMenuRegistForm');
     Route::post('/offerMenu/regist/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuRegistConfirm'])->name('shops.showOfferMenuRegistConfirm');
@@ -136,6 +139,14 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
     Route::post('/offerMenu/edit/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditConfirm'])->name('shops.showOfferMenuEditConfirm');
     Route::post('/offerMenu/edit/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showOfferMenuEditComplete'])->name('shops.showOfferMenuEditComplete');
     Route::get('/deleteMenu/{service_id}/{shop_id}', [\App\Http\Controllers\Shops\ShopController::class, 'deleteMenu'])->name('shops.deleteMenu');
+
+    //shop---ticket
+    Route::get('/ticket/list', [\App\Http\Controllers\Shops\ShopController::class, 'ticketList'])->name('shops.showTicketList');
+
+    //shop---Contact
+    Route::get('/contact/form', [\App\Http\Controllers\Shops\ShopController::class, 'showContactForm'])->name('shops.showContactForm');
+    Route::post('/contact/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showContactConfilm'])->name('shops.showContactConfirm');
+    Route::post('/contact/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showContactComplete'])->name('shops.showContactComplete');
 
 });
 

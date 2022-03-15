@@ -1,0 +1,65 @@
+#content{
+    .month_select{
+        table{
+            width: 100%;
+            margin: 30px 0;
+            td{
+                text-align: center;
+                a{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .table_area{
+
+        table{
+            width: 100%;
+            border: 1px solid #ccc;
+            margin: 40px 0 5px;
+
+            thead{
+                td{
+                    text-align: center;
+                    padding: 5px;
+                    background: #efede4;
+                    &:not(:last-child){
+                        border-right: 1px solid #ccc;
+                    }
+               }
+            }
+
+            tbody{
+                td{
+                    padding: 5px;
+                    height: 35px;
+                    border-top: 1px solid #ccc;
+                    text-align: center;
+                    &:not(:last-child){
+                        border-right: 1px solid #ccc;
+                    }
+
+                }
+            }
+        }
+    }
+
+    #pagenator{
+        text-align: center;
+        margin: 30px 0;
+        a,span{
+            padding: 5px 10px;
+        }
+
+        a{
+            text-decoration: underline;
+        }
+
+        span{
+            background: #efede4;
+        }
+    }
+
+
+}
