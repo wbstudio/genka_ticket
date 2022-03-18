@@ -1,0 +1,36 @@
+#content{
+
+    .fix_text_area{
+
+        .text_mass{
+            margin: 40px 0 70px;
+                h3{
+                border-bottom: 1px solid #373737;
+            }
+
+            // p{
+
+            // }
+        }
+        .button_area{
+            text-align: center;
+            margin-top: 30px;
+
+            a{
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color:#373737;
+                width: 120px;
+                margin: 0 30px;
+                background: #efede4;
+                &:hover{
+                    opacity: 0.5;
+                }
+            }
+        }
+
+    }
+
+}

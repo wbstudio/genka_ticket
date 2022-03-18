@@ -37,7 +37,7 @@
             </table>
         </div>
         <div class="table_area">
-        @if(!empty($shopTicketList))
+        @if(count($shopTicketList) > 0)
         <table>
             <colgroup>
                 <col style="width:15%;">
@@ -84,9 +84,13 @@
                         {{$ticketData -> created_at -> format('Y/m/d H:i')}}
                     </td>
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>           
         </table>
+        @else
+        <div class="error_message">
+            {{$monthData['current_str'] }}のticket利用履歴はありません。
+        </div>
         @endif
         </div>
 

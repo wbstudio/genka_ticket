@@ -58,6 +58,9 @@ class Shop extends Model
 
         $aList = $dispData[0];
 
+        $aList -> category_string = config('shop.category')[$aList->category];
+
+
         return $aList;
     }
 

@@ -1,0 +1,104 @@
+#content .regist_form table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+#content .regist_form table th {
+  font-weight: normal;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+  background: #efede4;
+}
+#content .regist_form table td {
+  padding: 15px;
+}
+#content .regist_form table td input[type=text] {
+  width: 90%;
+}
+#content .regist_form table td textarea {
+  width: 90%;
+  height: 250px;
+  resize: vertical;
+}
+#content .regist_form table tr:not(:last-child) th, #content .regist_form table tr:not(:last-child) td {
+  border-bottom: 1px solid #ccc;
+}
+#content .regist_form .button_area {
+  text-align: center;
+  margin-top: 30px;
+}
+#content .regist_form .button_area button {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #373737;
+  width: 120px;
+  background: #efede4;
+}
+#content .regist_form .button_area button:hover {
+  opacity: 0.5;
+}
+#content .regist_form .button_area button.disable {
+  opacity: 0.3;
+  cursor: default;
+}
+#content .regist_form .button_area button.disable:hover {
+  opacity: 0.3;
+}
+#content .regist_confirm table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+#content .regist_confirm table th {
+  font-weight: normal;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+  background: #efede4;
+}
+#content .regist_confirm table td {
+  padding: 15px;
+}
+#content .regist_confirm table td p {
+  overflow-wrap: break-word;
+}
+#content .regist_confirm table tr:not(:last-child) th, #content .regist_confirm table tr:not(:last-child) td {
+  border-bottom: 1px solid #ccc;
+}
+#content .regist_confirm .button_area {
+  text-align: center;
+  margin-top: 30px;
+}
+#content .regist_confirm .button_area button {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #373737;
+  width: 120px;
+  margin: 0 30px;
+  background: #efede4;
+}
+#content .regist_confirm .button_area button:hover {
+  opacity: 0.5;
+}
+#content .regist_compete {
+  text-align: center;
+  margin: 60px 0;
+}
+#content .regist_compete .button_area {
+  text-align: center;
+  margin-top: 30px;
+}
+#content .regist_compete .button_area a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #373737;
+  width: 120px;
+  margin: 0 30px;
+  background: #efede4;
+}
+#content .regist_compete .button_area a:hover {
+  opacity: 0.5;
+}/*# sourceMappingURL=contact.css.map */

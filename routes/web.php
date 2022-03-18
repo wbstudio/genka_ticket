@@ -145,9 +145,11 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
 
     //shop---Contact
     Route::get('/contact/form', [\App\Http\Controllers\Shops\ShopController::class, 'showContactForm'])->name('shops.showContactForm');
-    Route::post('/contact/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showContactConfilm'])->name('shops.showContactConfirm');
+    Route::post('/contact/confirm', [\App\Http\Controllers\Shops\ShopController::class, 'showContactConfirm'])->name('shops.showContactConfirm');
     Route::post('/contact/complete', [\App\Http\Controllers\Shops\ShopController::class, 'showContactComplete'])->name('shops.showContactComplete');
 
+    //shop---Rule
+    Route::get('/rule', function(){ return view('shop.showRule');})->name('shops.showRule');
 });
 
 //Ajax--shop

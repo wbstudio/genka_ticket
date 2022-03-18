@@ -126,15 +126,9 @@
 #content .regist_confirm table td {
   padding: 15px;
 }
-#content .edit_confirm table td input[type=text],
-#content .regist_confirm table td input[type=text] {
-  width: 90%;
-}
-#content .edit_confirm table td textarea,
-#content .regist_confirm table td textarea {
-  width: 90%;
-  height: 250px;
-  resize: vertical;
+#content .edit_confirm table td p,
+#content .regist_confirm table td p {
+  overflow-wrap: break-word;
 }
 #content .edit_confirm table tr:not(:last-child) th, #content .edit_confirm table tr:not(:last-child) td,
 #content .regist_confirm table tr:not(:last-child) th,

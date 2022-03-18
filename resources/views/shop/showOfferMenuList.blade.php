@@ -17,7 +17,7 @@
         </div>
 
         <div class="table_area">
-        @if(!empty($shopServiceList))
+        @if(count($shopServiceList) > 0)
         <table>
             <colgroup>
                 <col style="width:10%;">
@@ -71,6 +71,10 @@
                 @endforeach
             </tbody>           
         </table>
+        @else
+        <div class="error_message">
+            原価ticket用メニューがありません。
+        </div>
         @endif
         </div>
         <div class="memo">

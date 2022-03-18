@@ -1,5 +1,5 @@
 <div class="logo_area">
-    <img src="{{ asset('images/customer/sp/logo/logo_01.png') }}">
+    <img src="{{ asset('images/common/site_logo.jpg') }}">
     <div class="string">
     Management screen
     </div>
@@ -26,12 +26,12 @@
             ticket利用履歴
         </li>
     </a>
-    <a href="">
+    <a href="{{ route('shops.showContactForm') }}">
         <li>
             お問い合わせ
         </li>
     </a>
-    <a href="">
+    <a href="{{ route('shops.showRule') }}">
         <li>
             利用規約
         </li>

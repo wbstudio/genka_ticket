@@ -45,7 +45,11 @@ main{
         
         .logo_area{
             text-align: center;
-            margin-top: 20px;
+            margin-top: 35px;
+
+            img{
+                width: 160px;
+            }
         }
 
         ul{
@@ -77,7 +81,7 @@ main{
             max-width: 800px;
             padding: 75px 50px;
             margin: 0 auto;
-            min-height: 90%;
+            min-height: 80%;
 
             h2.title {
                 position: relative;
@@ -114,6 +118,11 @@ main{
                 }
 
             }
+
+            .error_message{
+                text-align: center;
+                margin: 40px 0;
+            }
         }
     }
 
@@ -124,8 +133,69 @@ footer{
     width: 100%; /* 幅いっぱいを指定 */
     background: #efede4; /* 背景色にグレーを指定 */
     border-top: 1px solid #efede4;
-    box-shadow: 2px 0px 4px #373737;
-    color: #FFF;
+    box-shadow: 2px 0px 4px #9f9d94;
+
+    .footer_inner{
+        width: 90%;
+        margin: 0 auto;
+        padding: 30px 0;
+
+        .contents_list{
+            table{
+                width: 100%;
+                tbody{
+                    td{
+                        padding: 20px 0;
+                        text-align: center;
+                    }
+                }
+                thead{
+                    td{
+                        padding: 15px 0 20px;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .link_list{
+            table{
+                width: 235px;
+                margin: 35px auto 15px;
+                tbody{
+                    td.sns_list{
+                        padding: 5px 0;
+                        text-align: center;
+                        vertical-align: bottom;
+                        border-bottom: 1px solid #373737;
+                        a{
+                            padding-right: 10px;
+
+                            img{
+                                height: 30px;
+                            }
+                        }
+                    }
+                    td.logo_area{
+                        padding: 5px 0;
+                        text-align: center;
+
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .call_right{
+        text-align: center;
+        padding: 5px;
+        border-top: 1px solid #9f9d94;
+    }
 }
 
 

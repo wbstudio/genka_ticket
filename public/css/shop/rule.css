@@ -1,0 +1,23 @@
+#content .fix_text_area .text_mass {
+  margin: 40px 0 70px;
+}
+#content .fix_text_area .text_mass h3 {
+  border-bottom: 1px solid #373737;
+}
+#content .fix_text_area .button_area {
+  text-align: center;
+  margin-top: 30px;
+}
+#content .fix_text_area .button_area a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #373737;
+  width: 120px;
+  margin: 0 30px;
+  background: #efede4;
+}
+#content .fix_text_area .button_area a:hover {
+  opacity: 0.5;
+}/*# sourceMappingURL=rule.css.map */

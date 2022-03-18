@@ -12,75 +12,55 @@
 
     <div class="menu_list">
         <h2 class="title">原価ticket用メニュー</h2>
+        @if(count($shopServiceList) > 0)
         <table>
-            <colgroup> 
-                <col style='width: 10%;'>
-                <col style='width: 40%;'>
-                <col style='width: 25%;'>
-                <col style='width: 25%;'>
-            </colgroup>
-            <thead>
-                <tr>
-                    <td>
-                        ID
-                    </td>
-                    <td>
-                        タイトル
-                    </td>
-                    <td>
-                        登録時間
-                    </td>
-                    <td>
-                        更新時間
-                    </td>
-                </tr>
-            </thead>
+                <colgroup> 
+                    <col style='width: 10%;'>
+                    <col style='width: 40%;'>
+                    <col style='width: 25%;'>
+                    <col style='width: 25%;'>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td>
+                            ID
+                        </td>
+                        <td>
+                            タイトル
+                        </td>
+                        <td>
+                            登録時間
+                        </td>
+                        <td>
+                            更新時間
+                        </td>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td class="dt_title">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td class="dt_title">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td class="dt_title">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-            </tbody>
+                <tbody>
+                    @foreach($shopServiceList as $shopServiceData)
+                    <tr>
+                        <td>
+                            {{ $shopServiceData -> service_id }}
+                        </td>
+                        <td class="dt_title">
+                            {{ $shopServiceData -> service_name }}
+                        </td>
+                        <td>
+                            {{ $shopServiceData -> created_at }}
+                        </td>
+                        <td>
+                            {{ $shopServiceData -> updated_at }}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
         </table>
+        @else
+        <div class="error_message">
+            原価ticket用メニューがありません。
+        </div>
+        @endif
         <div class="button_area">
             <a href="{{ route('shops.offer_menu') }}">メニューページへ</a>
         </div>
@@ -101,7 +81,7 @@
                         店舗名
                     </td>
                     <td class="dt_name">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                        {{ $shopData -> name }}
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +89,7 @@
                         登録アドレス
                     </td>
                     <td class="dt_email">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@XXXXXXXXXXX
+                        {{ $shopData -> email }}
                     </td>
                 </tr>
                 <tr>
@@ -117,7 +97,7 @@
                         カテゴリー
                     </td>
                     <td class="dt_name">
-                        XXXXXXXXXXXXXXXX
+                        {{$shopData -> category_string}}
                     </td>
                 </tr>
                 <tr>
@@ -125,7 +105,7 @@
                         住所
                     </td>
                     <td class="dt_name">
-                        東京都〇〇〇区〇〇00-00-00　○○○○○○○○○○○○　○F
+                        {{ $shopData -> adress }}
                     </td>
                 </tr>
                 <tr>
@@ -133,7 +113,7 @@
                         電話番号
                     </td>
                     <td class="dt_name">
-                        00-0000-0000
+                        {{ $shopData -> phone }}
                     </td>
                 </tr>
                 <tr>
@@ -141,7 +121,7 @@
                         営業時間
                     </td>
                     <td class="dt_name">
-                        00:00~00:00
+                        {{ $shopData -> business_hour }}
                     </td>
                 </tr>
                 <tr>
@@ -149,7 +129,7 @@
                         X軸
                     </td>
                     <td class="dt_name">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                        {{ $shopData -> xaxis }}
                     </td>
                 </tr>
                 <tr>
@@ -157,20 +137,22 @@
                         Y軸
                     </td>
                     <td class="dt_name">
-                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                        {{ $shopData -> yaxis }}
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="button_area">
-            <a href="{{ route('shops.offer_menu') }}">メニューページへ</a>
+            <a href="{{ route('shops.showEditInfoForm') }}">店舗情報ページへ</a>
         </div>
     </div>
 
     <div class="separater"></div>
 
     <div class="ticket_list">
-        <h2 class="title">今月のticket履歴</h2>
+        <h2 class="title">今月のticket履歴(最新の10件)</h2>
+
+        @if(count($shopTicketList["dispData"]) > 0)
         <table>
             <colgroup> 
                 <col style='width: 15%;'>
@@ -201,198 +183,36 @@
             </thead>
 
             <tbody>
+                @foreach($shopTicketList["dispData"] as $shopTicketData)
                 <tr>
                     <td>
-                        00000
+                        {{ $shopTicketData -> id}}
                     </td>
                     <td>
-                        00000
+                        {{ $shopTicketData -> customer_id}}
                     </td>
                     <td>
-                        00000
+                        {{ $shopTicketData -> service_id}}
                     </td>
                     <td>
-                        00枚
+                        {{ $shopTicketData -> count}}枚
                     </td>
                     <td>
-                        0000-00-00 00:00
+                        {{ $shopTicketData -> created_at}}
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00000
-                    </td>
-                    <td>
-                        00枚
-                    </td>
-                    <td>
-                        0000-00-00 00:00
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
-        <div class="any_count">他〇〇枚利用されています</div>
+
+        <div class="any_count">今月は計{{ $shopTicketList["count"]}}枚利用されています</div>
+        @else
+        <div class="error_message">
+            今月のticket利用履歴はありません。
+        </div>
+        @endif
         <div class="button_area">
-            <a href="{{ route('shops.offer_menu') }}">ticketページへ</a>
+            <a href="{{ route('shops.showTicketList') }}">ticketページへ</a>
         </div>
     </div>
 
@@ -417,7 +237,7 @@
             </p>
         </div>
         <div class="button_area">
-            <a href="{{ route('shops.offer_menu') }}">お問い合わせページへ</a>
+            <a href="{{ route('shops.showContactForm') }}">お問い合わせページへ</a>
         </div>
     </div>
 

@@ -42,7 +42,10 @@ main #side_navi {
 }
 main #side_navi .logo_area {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 35px;
+}
+main #side_navi .logo_area img {
+  width: 160px;
 }
 main #side_navi ul {
   max-width: 190px;
@@ -72,7 +75,7 @@ main #content .inner_content {
   max-width: 800px;
   padding: 75px 50px;
   margin: 0 auto;
-  min-height: 90%;
+  min-height: 80%;
 }
 main #content .inner_content h2.title {
   position: relative;
@@ -105,6 +108,10 @@ main #content .inner_content h2.title span {
   padding-left: 16px;
   color: #fff;
 }
+main #content .inner_content .error_message {
+  text-align: center;
+  margin: 40px 0;
+}
 
 footer {
   width: 100%;
@@ -112,8 +119,52 @@ footer {
   background: #efede4;
   /* 背景色にグレーを指定 */
   border-top: 1px solid #efede4;
-  box-shadow: 2px 0px 4px #373737;
-  color: #FFF;
+  box-shadow: 2px 0px 4px #9f9d94;
+}
+footer .footer_inner {
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+footer .footer_inner .contents_list table {
+  width: 100%;
+}
+footer .footer_inner .contents_list table tbody td {
+  padding: 20px 0;
+  text-align: center;
+}
+footer .footer_inner .contents_list table thead td {
+  padding: 15px 0 20px;
+  text-align: center;
+  font-weight: bold;
+}
+footer .footer_inner .link_list table {
+  width: 235px;
+  margin: 35px auto 15px;
+}
+footer .footer_inner .link_list table tbody td.sns_list {
+  padding: 5px 0;
+  text-align: center;
+  vertical-align: bottom;
+  border-bottom: 1px solid #373737;
+}
+footer .footer_inner .link_list table tbody td.sns_list a {
+  padding-right: 10px;
+}
+footer .footer_inner .link_list table tbody td.sns_list a img {
+  height: 30px;
+}
+footer .footer_inner .link_list table tbody td.logo_area {
+  padding: 5px 0;
+  text-align: center;
+}
+footer .footer_inner .link_list table tbody td.logo_area img {
+  width: 100%;
+}
+footer .call_right {
+  text-align: center;
+  padding: 5px;
+  border-top: 1px solid #9f9d94;
 }
 
 @media screen and (max-width: 959px) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\Shop\Shop;
 use \App\Models\Service;
+use \App\Models\ShopContact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +90,8 @@ class ShopController extends Controller
                     'kind' => 0,
                     'status' => 0,
                     'delete_flag' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]
             );
             Mail::to($inputs['email'])->send(new ShopEmailRegistMail($inputs));
@@ -204,11 +207,10 @@ class ShopController extends Controller
         $page_title = "";
         $page_type = "";
         $timestamp = time();
-        // $startTime = date("Y-m-01 00:00:00", $timestamp);
-        // $endTime = date("Y-m-d H:i:s", $timestamp);
-        //toDo--test用にチケット利用のある時間に設定
-        $startTime = date("2021-10-01 00:00:00");
-        $endTime = date("2021-12-31 00:00:00");
+        $startTime = date("Y-m-01 00:00:00", $timestamp);
+        $endTime = date("Y-m-d H:i:s", $timestamp);
+        $currentPage = 1;
+        $perPage = 10;
 
         $shopId = session('shop_id');
         $mdShop = new Shop();
@@ -218,6 +220,11 @@ class ShopController extends Controller
         }else if(isset($shopData["status"]) && $shopData["status"] == 1){
             return redirect()->route('shops.adminConfirm');
         }
+        //Menu
+        $shopServiceList = $mdShop->getShopMenuInfoById($shopId);
+        //ticket
+        $shopTicketDataForPager = $mdShop->getShopTicketInfoById($shopId,$startTime,$endTime,$currentPage - 1,$perPage);
+
         // $shopTicketData = $mdShop->getShopTicketInfoById($shopId);
         //toDo--test用にチケット利用のあるshop_idに設定
         // $shopTicketData = $mdShop->getShopTicketInfoById(5,$startTime,$endTime);
@@ -226,7 +233,8 @@ class ShopController extends Controller
             'pageTitle' => $page_title,
             'pageType' => $page_type,
             'shopData' => $shopData,
-            // 'shopTicketData' => $shopTicketData,
+            'shopServiceList' => $shopServiceList,
+            'shopTicketList' => $shopTicketDataForPager,
         ];
 
         return view('shop.home', $dispData);
@@ -329,6 +337,8 @@ class ShopController extends Controller
             $shop->xaxis = $request->input('xaxis');
             $shop->yaxis = $request->input('yaxis');
             $shop->status = 1;
+            $shop->created_at = now();
+            $shop->updated_at = now();
             $shop->save();
 
             //送信完了ページのviewを表示
@@ -439,6 +449,8 @@ class ShopController extends Controller
             $request->session()->regenerateToken();
             $shop = Shop::where("id",$request->input('id'))->first();
             $shop->business_hour = $request->input('business_hour');
+            $shop->created_at = now();
+            $shop->updated_at = now();
             $shop->save();
 
             //送信完了ページのviewを表示
@@ -663,6 +675,7 @@ class ShopController extends Controller
 
         $service = Service::where($whereList)->first();
         $service->delete_flag = 1;
+        $service->updated_at = now();
         $service->save();
 
             //送信完了ページのviewを表示
@@ -722,6 +735,96 @@ class ShopController extends Controller
 
         return view('shop.showTicketList', $dispData);
 
+    }
+
+    public function showContactForm()
+    {
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+        ];
+
+        return view('shop.showContactForm', $dispData);
+
+    }
+
+    public function showContactConfirm(Request $request)
+    {
+
+        $request->validate([
+            'shop_id' => 'required',
+            'email' => 'required',
+            'title' => 'required',
+            'main' => 'required',
+        ]);
+
+        $page_title = "";
+        $page_type = "";
+
+        $shopId = session('shop_id');
+        $mdShop = new Shop();
+        $shopData = $mdShop->getShopInfoById($shopId);
+        $inputs = $request->all();
+
+        $dispData = [
+            'pageTitle' => $page_title,
+            'pageType' => $page_type,
+            'shopData' => $shopData,
+            'inputs' => $inputs,
+            // 'shopTicketData' => $shopTicketData,
+        ];
+
+        return view('shop.showContactConfirm', $dispData);
+
+    }
+
+    public function showContactComplete(Request $request)
+    {
+
+        $inputs = $request->all();
+
+        //フォームから受け取ったactionの値を取得
+        $action = $request->input('action');
+        
+        //フォームから受け取ったactionを除いたinputの値を取得
+        $inputs = $request->except('action');
+        
+        //actionの値で分岐
+        if($action !== 'submit'){
+            return redirect()
+                ->route('shops.showContactForm')
+                ->withInput($inputs);
+        } else {
+            $request->session()->regenerateToken();
+            $shop = DB::table('shop_contacts');
+            $data = $shop
+            ->insert(
+                [
+                    'shop_id' => $inputs['shop_id'],
+                    'email' => $inputs['email'],
+                    'title' => $inputs['title'],
+                    'main' => $inputs['main'],
+                    'response' => 0,
+                    'status' => 0,
+                    'delete_flag' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+            // Mail::to($inputs['email'])->send(new ShopContactReturn($inputs));
+
+            //送信完了ページのviewを表示
+            return view('shop.showContactComplete');
+        }
+        
     }
 
 
