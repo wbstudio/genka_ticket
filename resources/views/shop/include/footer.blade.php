@@ -67,16 +67,16 @@
                 <tbody>
                 <tr>
                         <td class="sns_list">
-                            <a href="{{ route('shops.home') }}">
+                            <a title="ただいま準備中です。今しばらくお待ちください。">
                                 <img src="{{asset('images/common/sns/Twitter_black.svg')}}">
                             </a>
-                            <a href="{{ route('shops.home') }}">
+                            <a  title="ただいま準備中です。今しばらくお待ちください。">
                                 <img src="{{asset('images/common/sns/Facebook_black.svg')}}">
                             </a>
-                            <a href="{{ route('shops.home') }}">
+                            <a  title="ただいま準備中です。今しばらくお待ちください。">
                                 <img src="{{asset('images/common/sns/Instagram_black.svg')}}">
                             </a>
-                            <a href="{{ route('shops.home') }}">
+                            <a  title="ただいま準備中です。今しばらくお待ちください。">
                                 <img src="{{asset('images/common/sns/Youtube_black.svg')}}">
                             </a>
                         </td>
