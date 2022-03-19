@@ -1,0 +1,10 @@
+#content .fix_text_area table {
+  width: 100%;
+  margin: 50px 0;
+}
+#content .fix_text_area table td {
+  padding: 20px 5px;
+}
+#content .fix_text_area table td:first-child {
+  text-align: center;
+}/*# sourceMappingURL=admin.css.map */

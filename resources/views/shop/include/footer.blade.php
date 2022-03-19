@@ -38,18 +38,24 @@
                     </tr>
                     <tr>
                         <td>
+                            <a title="ただいま準備中です。今しばらくお待ちください。">
+                                管理ページの使い方
+                            </a>
+                        </td>
+                        <td>
+                            <a title="ただいま準備中です。今しばらくお待ちください。">
+                                よくある質問
+                            </a>
+                        </td>
+                        <td>
                             <a href="{{ route('shops.showRule') }}">
                                 利用規約
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('shops.home') }}">
+                            <a href="{{ route('shops.showAdmin') }}">
                                 運営元
                             </a>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
                         </td>
                     </tr>
                 </tbody>

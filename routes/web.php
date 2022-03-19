@@ -150,6 +150,8 @@ Route::prefix('shops/admin')->middleware('auth:shops')->group(function(){
 
     //shop---Rule
     Route::get('/rule', function(){ return view('shop.showRule');})->name('shops.showRule');
+    //shop---admin
+    Route::get('/admin', function(){ return view('shop.showAdmin');})->name('shops.showAdmin');
 });
 
 //Ajax--shop
