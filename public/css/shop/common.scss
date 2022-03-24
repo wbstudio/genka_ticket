@@ -147,6 +147,11 @@ footer{
                     td{
                         padding: 20px 0;
                         text-align: center;
+                        a{
+                            &:hover{
+                                text-decoration: underline;
+                            }
+                        }
                     }
                 }
                 thead{

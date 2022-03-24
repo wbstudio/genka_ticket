@@ -21,7 +21,6 @@ class ShopController extends Controller
     //
     public function index()
     {
-        var_dump("LP");
         return view('shop.index');
     }
 

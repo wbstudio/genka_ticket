@@ -133,6 +133,9 @@ footer .footer_inner .contents_list table tbody td {
   padding: 20px 0;
   text-align: center;
 }
+footer .footer_inner .contents_list table tbody td a:hover {
+  text-decoration: underline;
+}
 footer .footer_inner .contents_list table thead td {
   padding: 15px 0 20px;
   text-align: center;
