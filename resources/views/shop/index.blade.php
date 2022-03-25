@@ -1,8 +1,14 @@
 <html>
     <head>
-        <title> - @yield('title')</title>
+        <title></title>
+        <meta property="og:title" content="原価ticket【協力店募集ページ】" />
+        <meta property="og:type" content="【飲食店必見】無料で集客力を上げる方法。" />
+        <meta property="og:description" content="飲食店必見、無料で集客力を上げる方法。" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="keywords" content="飲食店,集客,売上,無料,集客力を上げる,飲食">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+        <meta name="description" content="飲食店必見、無料で集客力を上げる方法。">
+        <meta charset="UTF-8">
         <!--css-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
