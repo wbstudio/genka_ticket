@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title></title>
+        <title>原価ticket【協力店募集ページ】</title>
         <meta property="og:title" content="原価ticket【協力店募集ページ】" />
         <meta property="og:type" content="【飲食店必見】無料で集客力を上げる方法。" />
         <meta property="og:description" content="飲食店必見、無料で集客力を上げる方法。" />
