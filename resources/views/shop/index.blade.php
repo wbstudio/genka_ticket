@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="{{ asset('css/shop/attract.css') }}">
         <!--js-->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        @yield('head')
     </head>
     <body>
         <main>
