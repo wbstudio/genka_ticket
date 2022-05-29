@@ -97,7 +97,7 @@
 .search_result_area .list_area .shop_detail .shop_detail_inner {
   padding: 7px 2px 4px;
   border-radius: 3px;
-  background: white;
+  background: rgb(255, 255, 255);
 }
 .search_result_area .list_area .shop_detail .shop_detail_inner .inner_upside {
   display: flex;

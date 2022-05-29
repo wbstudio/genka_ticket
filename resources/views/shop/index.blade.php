@@ -186,8 +186,6 @@
                         <span class="bold big ul red">WinWinなシステム</span>となっているのです。
                     </p>          
                     <p>
-
-
                         何度もくどいようにお伝えしてしまっていますが、<br>
                         原価ticketを使えば<br>
                         何の煩わしさもなく無料で集客力がupします。
