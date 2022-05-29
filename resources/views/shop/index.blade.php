@@ -23,7 +23,7 @@
                 <img src="{{ asset('images/shop/attract_header_pc.png') }}">
                 <div class="container">
                     <p>
-                        あ、初めまして。<br>
+                        初めまして。<br>
                         <span class="bold">原価ticket運営のYuスケ</span>です。<br>
                         私は普段、<span class="bold">飲食業界のコンサルタント</span>をやっております。
                     </p>
