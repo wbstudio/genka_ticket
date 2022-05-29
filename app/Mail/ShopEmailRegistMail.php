@@ -31,7 +31,7 @@ class ShopEmailRegistMail extends Mailable
     {
         return $this->text('mail.shop.shopEmailRegistMail')
                     ->from('XXX@XXXX','Test')
-                    ->subject('【原価チケット】ご登録ありがとうございます。')
+                    ->subject('【原価ticket】ご登録ありがとうございます。')
                     ->with(['shopData' => $this->shopData]);;
     }
 }

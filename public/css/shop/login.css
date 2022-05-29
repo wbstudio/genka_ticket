@@ -27,7 +27,7 @@ body table {
   border-radius: 3px;
 }
 #member_outside .form_area .error_message {
-  color: #ad0000;
+  color: rgb(173, 0, 0);
   margin-bottom: 10px;
 }
 #member_outside .form_area .memo {

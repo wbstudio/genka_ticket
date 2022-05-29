@@ -64,9 +64,9 @@
 #content .edit_form .error_message,
 #content .regist_form .error_message {
   padding: 5px 5px 5px 25px;
-  color: #9c0000;
-  border: 3px double #9c0000;
-  background: #ffd2d2;
+  color: rgb(156, 0, 0);
+  border: 3px double rgb(156, 0, 0);
+  background: rgb(255, 210, 210);
 }
 #content .edit_confirm table,
 #content .regist_confirm table {
